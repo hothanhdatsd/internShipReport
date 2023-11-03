@@ -1,0 +1,447 @@
+
+- Bình phương từng phần tử của số
+# def square_digits num
+#   arr =[]
+#   num.to_s.split("").map do |value|
+#     arr << (value.to_i * value.to_i)
+#   end
+#   arr.join()
+# end
+# p square_digits(493625)
+
+-- Sắp xếp lại câu theo số thứ tự
+# def order(words)
+#   return "" if words.empty?
+#   word_list = words.split(" ")
+#   arr = Array.new(word_list.size)
+#   word_list.each do |word|
+#     position = word.scan(/\d/).first.to_i
+#     arr[position - 1] = word
+#   end
+#   result = arr.join(" ")
+#   result
+# end
+
+# def order(words)
+#   words.split.sort_by{ |word| word[/\d/] }.join(' ')
+# end
+
+# p order("is2 Thi1s T4est 3a")
+
+
+-- Đếm số lần xuất hiện của các từ a, e, i, o, u
+# def get_count(input_str)
+#   #your code here
+#   input_str.gsub(" ","").count("a, e, i, o, u")
+# end
+# p get_count("ebskilfujfndrwttjfkww n")
+
+-- Lấy giá trị lớn và nhỏ nhất của chuỗi gồm các số 
+# def high_and_low(numbers)
+#   numbers = numbers.split.map() do |value|
+#     value.to_i
+#   end
+#   "#{numbers.max} #{numbers.min}"
+# end
+
+# p high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4")  # Returns "42 -9"
+# p high_and_low("1 2 -3 4 5") # Returns "5 -3"
+# p high_and_low("1 9 3 4 -5") # Returns "9 -5"
+
+-- Đếm số lần xuất hiện của x và o xem có bằng nhau hay không
+# def XO(str)
+#   #your code here
+#   str.count("xX") == str.count("oO")
+# end
+
+# p XO('xo')
+# p XO('p XO')
+# p XO('xo0')
+# p XO('xxxoo')
+# p XO("xxOo")
+
+-- Tổng các phần tử của số
+# def digital_root(n)
+#   sum = n.to_s.split("").reduce(0) do |sum,acc|
+#     sum += acc.to_i
+#   end
+#   if sum > 9
+#     digital_root(sum)
+#   else
+#     sum
+#   end
+# end
+
+
+# p digital_root(16)
+# p digital_root(942)
+# p digital_root(132189)
+# p digital_root(493193)
+
+
+-- Thay thế phần tử lặp lại thành ), không lặp thì thành (
+# def duplicate_encode(word)
+#   word.split("").map do |value|
+#    word.downcase.count(value.downcase) <= 1 ? "(" : ")"
+#   end.join("")
+# end
+
+# p duplicate_encode("din")
+# p duplicate_encode("recede")
+# p duplicate_encode("Success")
+# p duplicate_encode("(( @")
+
+
+-- Chưa done
+# def towerBuilder(n_floors)
+#   arr = []
+#   for i in 1..n_floors do
+#     temp =""
+#     for j in 1..(i+(i-1)) do
+#       if(n_floors > 1)
+#         temp +=  " " 
+#         temp +=  "*" 
+#         temp +=  " " 
+#       else
+#         temp +=  "*" 
+#       end
+#     end
+#     arr << temp
+#   end
+#   arr
+# end
+# # p towerBuilder(1)
+# # p towerBuilder(2)
+# p towerBuilder(1)
+
+
+-- Đếm số lượng bánh có thể làm ra từ công thức
+# def cakes(recipe, available)
+#   count =[]
+#   if (available.empty? || available.length < recipe.length)
+#     return 0
+#   end
+#   recipe.each do |item,value|
+#     count << ( available["#{item}"].to_i  / value.to_i) 
+#   end
+#   p count
+#   count.min
+# end
+    
+#   #  p  cakes({"cream"=>200, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>1700, "flour"=>20000, "milk"=>20000, "oil"=>30000, "cream"=>5000})
+#    p cakes( {"flour"=>16, "cocoa"=>9, "eggs"=>18, "pears"=>10, "cream"=>12} , {"cocoa"=>180, "nuts"=>60, "apples"=>120, "cream"=>170, "oil"=>190})
+#   #  p  cakes({"apples"=>3, "flour"=>300, "sugar"=>150, "milk"=>100, "oil"=>100},{"sugar"=>500, "flour"=>2000, "milk"=>2000, "apples"=>15, "oil"=>20})
+#   #   p cakes({"eggs"=>4, "flour"=>400},{})
+#   #   p  cakes({"cream"=>1, "flour"=>3, "sugar"=>1, "milk"=>1, "oil"=>1, "eggs"=>1},{"sugar"=>1, "eggs"=>1, "flour"=>3, "cream"=>1, "oil"=>1, "milk"=>1})
+
+-- Lấy các phần tử lặp lại trên 1 lần
+# def duplicate_count(text)
+#   count = []
+#   text.downcase.each_char do |char|
+#     if text.downcase.count(char) > 1
+#       count << char
+#     end
+#   end
+#   p count.uniq
+# end
+
+# duplicate_count("")
+# duplicate_count("abcde")
+# duplicate_count("abcdeaa")
+# duplicate_count("abcdeaB")
+# duplicate_count("Indivisibilities")
+
+-- Tách chuỗi thành chuỗi camel
+# def solution(string)
+#   string.split(/(?=[A-Z])/).join(' ')
+# end
+
+# p solution('camelCasing')
+# p solution('camelCas#
+
+
+-- di chuyển các phần tử có giá trị 0 về cuối mảng
+# def moveZeros(arr) 
+#   left,right = arr.partition do |x|
+#     x !=0
+#   end
+#   left.concat(right)
+# end
+
+# p moveZeros([1,2,0,1,0,1,0,3,0,1])
+
+-- Xóa các phần tử lặp lại nhiều hơn max_e
+# def delete_nth(order, max_e)
+#   counts = Hash.new(0)
+#   result = []
+#   order.each do |value|
+#     counts[value] += 1
+#     if counts[value] <= max_e
+#       result << value
+#     end
+#   end
+#   result
+# end
+
+
+# p delete_nth([20,37,20,21], 1)
+# # p delete_nth([1,1,3,3,7,2,2,2,2], 3)
+
+-- Lấy giá trị tên miền 
+# def domain_name(url)
+#   url.match(/(?:https?:\/\/)?(?:www\d?\.)?(?<domain>[\w-]+)/)['domain']
+# end
+
+# domain_name("http://google.com")
+# domain_name("http://google.co.jp")
+# domain_name("www.xakep.ru")
+# domain_name("https://youtube.com")
+
+
+-- Xác định giá trị của data để trả về chuỗi phù hợp
+# def open_or_senior(data)
+#   data.map do |key, value|
+#     if key >= 55 && value > 7
+#        "Senior"
+#     else 
+#        "Open"
+#     end
+#   end
+# end
+
+# p open_or_senior([[45, 12],[55,21],[19, -2],[104, 20]])
+# p open_or_senior([[3, 12],[55,1],[91, -2],[54, 23]])
+# p open_or_senior([[59, 12],[55,-1],[12, -2],[12, 12]])
+# p open_or_senior([[16, 23],[73,1],[56, 20],[1, -1]])
+
+
+-- Tạo ra hashtag thêm hoa mỗi chữ
+# def generateHashtag(str)
+#   if (str.gsub(" ","").empty? || str.length >= 140)
+#     return false 
+#   end
+#   words = str.split.map(&:capitalize)
+#   return "#"+words.join('')
+# end
+
+# # p generateHashtag("")
+# # p generateHashtag(" " * 200)
+# p generateHashtag("Do We have A Hashtag")
+# # p generateHashtag("Codewars")
+# # p generateHashtag("Codewars Is Nice")
+# # p generateHashtag("Codewars is nice")
+# # p generateHashtag("code" + " " * 140 + "wars")
+# # p generateHashtag("Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong Cat")
+# # p generateHashtag("a" * 139)
+# # p generateHashtag("a" * 140)
+
+-- Kiểm tra chuỗi 1 có thể chưa chuỗi 2 không
+# def scramble(s1,s2)
+#   s2.chars.all? { |char| s1.include?(char)}
+# end
+
+# p scramble('rkqodlw',           'world'     )
+# p scramble('cedewaraaossoqqyt', 'codewars'  )
+# p scramble('katas',             'steak'     )
+# p scramble('scriptjava',        'javascript')
+# p scramble('scriptingjava',     'javascript')
+
+-- Đêm số 0 sau giá trị giai thừa
+# def zeros(n)
+#   count = 0
+#   while n >= 5
+#     n = n / 5
+#     count += n
+#   end
+#   count
+# end
+
+# puts zeros(4)  # Output: 1
+# puts zeros(12) # Output: 2
+
+-- chưa done
+# def format_duration(seconds)
+#   result=""
+#   if seconds <= 60 
+#     result = seconds.to_s + " seconds"
+#   elsif seconds < 3600
+#     result = (seconds / 60).to_s + " minutes " +format_duration(seconds%60)
+#   else
+#     result = (seconds / 3600).to_s + " hours" +format_duration(seconds%3600)
+#   end
+# end
+# p format_duration(3662)
+# Test.assert_equals(format_duration(1), "1 second")
+# Test.assert_equals(format_duration(62), "1 minute and 2 seconds")
+# Test.assert_equals(format_duration(120), "2 minutes")
+# Test.assert_equals(format_duration(3600), "1 hour")
+# Test.assert_equals(format_duration(3662), "1 hour, 1 minute and 2 seconds")
+
+
+-- Lấy các phần tử số của mảng
+# def filter_list(l)
+#   l.select do |value|
+#      value.is_a?(Integer) 
+#   end 
+# end
+# p filter_list([1,2,'a','b'])
+# filter_list([1,'a','b',0,15])
+# filter_list([1,2,'aasf','1','123',123])
+
+
+-- Sắp xếp số giảm dần
+# def descending_order(n)
+#   p n.to_s.split("").sort{|a,b| b <=> a}.join.to_i
+# end
+# descending_order(0)
+# descending_order(1)
+# descending_order(123456789)
+
+-- Trả về số âm
+# def make_negative(num)
+#    num < 0 ? num : -num
+# end
+
+-- Xét xem chuỗi có chưa đủ kí tự từ  a-z không
+# def pangram?(s)
+#   alphabet_chars = s.downcase.gsub(/[^a-z]/, '').chars.uniq
+#   alphabet_chars.size == 26
+# end
+
+# pangram?("The quick brown fox jumps over the lazy dog.")
+# pangram?("This is not a pangram.")
+
+-- Chia chuỗi số ra làm 2 và cộng từng phần tử của mỗi bên và so sánh
+# def luck_check(str)
+#   raise ArgumentError, 'Input contains illegal characters' if str.match(/[^0-9]/)
+#   raise ArgumentError, 'Input is empty' if str.empty?
+#   raise ArgumentError, 'Input has an odd length' if str.length.odd?
+#   half_length = str.length / 2
+#   left_half = str[0...half_length]
+#   right_half = str[half_length..-1]
+#   left_sum = left_half.chars.map(&:to_i).sum
+#   right_sum = right_half.chars.map(&:to_i).sum
+#   left_sum == right_sum
+# end
+
+
+# p luck_check('68359')
+# p luck_check('683000')
+
+
+-- Tăng giá trị của chuỗi số cuối chuỗi lên 1
+# def increment_string(input)
+#   number = []
+#   temp =[]
+#   input.chars.map do |value|
+#     if value.match(/[0-9]/)
+#       number << value
+#     else
+#       temp << value if value.match?(/[A-Za-z]/) 
+#     end
+#   end
+#   p temp.join + (number.empty? ? 1 :number.join.next).to_s
+# end
+# increment_string("foo")
+# increment_string("foobar001")
+# increment_string("foobar1")
+# increment_string("foobar00")
+# increment_string("foobar99")
+# increment_string("")
+
+
+-- Quy đối giá trị
+# def rgb_to_hex(r, g, b)
+#   # Ensure that the values are within the valid range (0-255)
+#   r = [0, [r, 255].min].max
+#   g = [0, [g, 255].min].max
+#   b = [0, [b, 255].min].max
+#   # Convert the RGB values to hexadecimal and format them as a string
+#   hex = format("%02X%02X%02X", r, g, b)
+#   hex
+# end
+
+# puts rgb_to_hex(255, 255, 255) 
+# puts rgb_to_hex(255, 255, 300) 
+# puts rgb_to_hex(0, 0, 0)       
+# puts rgb_to_hex(148, 0, 211)
+
+-- Tìm các số tồn tại ở cả 2 chuỗi
+# def lcs(x, y)
+#   arr = y.chars.downcase.select do |value|
+#      x.include?(value)
+#   end
+#   arr.join
+# end
+
+# p lcs("a", "b")
+# p lcs( "132535365" , "123456789" )
+
+
+# class Warrior
+#   attr_reader :level, :experience, :rank, :achievements
+
+#   RANKS = [
+#     "Pushover", "Novice", "Fighter", "Warrior", "Veteran",
+#     "Sage", "Elite", "Conqueror", "Champion", "Master", "Greatest"
+#   ]
+
+#   def initialize
+#     @level = 1
+#     @experience = 100
+#     @rank = "Pushover"
+#     @achievements = []
+#   end
+
+#   def battle(enemy_level)
+#     return "Invalid level" unless (1..100).cover?(enemy_level)
+    
+#     level_diff = enemy_level - @level
+#     if level_diff >= 2
+#       gain_experience(0)
+#       "Easy fight"
+#     elsif level_diff == 1 || level_diff == 0
+#       gain_experience(10)
+#       "A good fight"
+#     else
+#       exp = 20 * level_diff**2
+#       gain_experience(exp)
+#       "An intense fight"
+#     end
+#   end
+
+#   def training(description)
+#     desc, exp_required, min_level = description
+#     return "Not strong enough" if @level < min_level
+
+#     @achievements << desc
+#     gain_experience(exp_required)
+#     desc
+#   end
+
+#   private
+
+#   def gain_experience(exp)
+#     @experience += exp
+#     while @experience >= 10000 && @level < 100
+#       @experience -= 10000
+#       @level += 1
+#       @rank = RANKS[@level / 10]
+#     end
+#   end
+# end
+
+# bruce_lee = Warrior.new
+# puts bruce_lee.level        
+# puts bruce_lee.experience  
+# puts bruce_lee.rank         
+# puts bruce_lee.achievements 
+
+# puts bruce_lee.training(["Defeated Chuck Norris", 9000, 1]) 
+# puts bruce_lee.experience   
+# puts bruce_lee.level        
+# puts bruce_lee.rank         
+# puts bruce_lee.battle(90)  
+# puts bruce_lee.experience   
+# puts bruce_lee.achievements "Defeated Chuck Norris"
+

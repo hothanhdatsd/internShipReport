@@ -1,0 +1,65 @@
+- Select .. from .. where .. : lựa chọn các cột từ bảng kèm theo điều kiện
+- Insert into ... values .. : thêm các giá trị vào trong bảng 
+- update .. set .. where : cập nhật dữ liệu trong bảng phù hợp với điều kiện
+- delete from .. where : xóa dữ liệu trong bảng phù hợp điều kiện
+	- <,> : giá trị nhỏ hoặc lớn hơn
+	- In : tồn tại giá trị trong danh sách
+	- between : ở giữa 2 giá trị
+	- like : theo chuỗi
+- truncate : xóa bảng nhưng không xóa cấu trúc của bảng
+- create table .. (..) : tạo bảng với các cột
+- alter table ..  : thay đổi cấu trúc bảng
+- drop table .. : xóa bảngd
+- create database ..  : tạo database
+- select * from .. join .. 
+- select * from table1 (right join,join,left join) table on table1.column = table.column :  sử dụng lấy dữ liệu từ hai bảng tùy theo nhu cầu sử dụng
+- create procedure (parameter) .. begin .. end : Tạo procedure
+	- parameter : tham số in hoặc out
+- create function ..(paramater) return ..
+deterministic
+begin
+..
+end; ::: Tạo môt function 
+- select .. from .. group by .. having .. : lấy các giá trị theo một cột phù hợp với giá trị 
+- order by : sắp xếp theo giá trị 
+	- asc : tăng dần
+	- des : giảm dàn 
+	- NULLS FIRST : giá trị null lên đầu
+	- NULLS LAST : giá trị null xuống cuối
+	
+- các hàm tính toán khi select : 
+	- sum : tính tổng
+	- avg : tính trung bình
+	- count : tính số đếm
+	- max : số lớn nhất
+	- min : số nhỏ nhất 
+	- round : làm tròn giá trị
+	- concat : nối chuỗi
+	- upper và lower : chữ hoa và chữ thường 
+	- Date : trích ngày từ dữ liệu
+	- Datediff : tính số ngày giữa 2 giá trị
+- LiKE : tìm các giá trị trong chuỗi phù hợp với điều kiện.
+- SELECT
+    ProductName,
+    Price,
+    CASE
+        WHEN Price > 1000 THEN 'Đắt'
+        ELSE 'Rẻ'
+    END AS Category
+FROM Products; : giá trị của category theo điều kiện của price
+- LIMIT : giới hạn số dòng khi lấy 
+- select distinct : lấy các giá trị không trùng lặp
+- WITH HighPricedProducts AS (
+    SELECT ProductName, Price
+    FROM Products
+    WHERE Price > 1000
+)
+SELECT ProductName, Price
+FROM HighPricedProducts; :::: chia nhỏ bảng Products ra thành bảng nhỏ để tiện truy vấn
+ 
+- group by : nhóm các dữ liệu theo nhóm 
+- order by : sắp xếp dữ liệu truy vấn hiển thị
+
+- create index : giúp tăng hiệu suất khi truy vấn
+
+- 

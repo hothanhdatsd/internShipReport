@@ -1,0 +1,11 @@
+- String (Chuỗi): Là một dãy các ký tự được bao quanh bởi dấu nháy kép ("...") hoặc dấu nháy đơn ('...'). Chuỗi là đối tượng có thể thay đổi nội dung.
+- Symbol (Ký hiệu): Là một loại đối tượng không thay đổi và được đại diện bằng một tên ngắn gọn bắt đầu bằng dấu hai chấm (:...). Symbol được sử dụng chủ yếu để đại diện cho các hằng số hoặc khóa trong các cấu trúc dữ liệu như Hash.
+ví dụ : 
+string -->> name = "Alice" 
+symbol -->> color = :red   
+- Nội suy chuỗi là cách chèn giá trị của biến hoặc biểu thức vào trong một chuỗi để tạo ra một chuỗi mới.
+ví dụ :
+name = "Alice"
+age = 30
+puts "Xin chào, tôi là #{name} và tôi #{age} tuổi."
+

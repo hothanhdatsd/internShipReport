@@ -1,0 +1,309 @@
+### In và Hiển Thị
+- `puts`: Dùng để in kết quả ra màn hình và sau đó xuống dòng.
+- `p`: In ra giá trị của một đối tượng, bao gồm cả thông tin debug, nhưng không tự động xuống dòng.
+- `print`: In ra giá trị mà không tự động xuống dòng.
+
+### Đọc Dữ Liệu Đầu Vào
+- `gets`: Đọc dữ liệu từ bàn phím.
+- `gets.chomp`: Đọc dữ liệu từ bàn phím và loại bỏ ký tự xuống dòng.
+
+### Xử Lý Số
+- `odd?`: Kiểm tra xem một số có phải là số lẻ hay không.
+- `even?`: Kiểm tra xem một số có phải là số chẵn hay không.
+- `positive?`: Kiểm tra xem một số có phải là số dương hay không.
+- `negative?`: Kiểm tra xem một số có phải là số âm hay không.
+- `abs`: Trả về giá trị tuyệt đối của một số.
+- `next` / `succ`: Tăng giá trị số lên 1.
+- `pred`: Giảm giá trị số xuống 1.
+- `<=>`: So sánh hai số.
+
+
+### Làm tròn Số
+- `floor`: Làm tròn xuống số nguyên gần nhất.
+- `ceil`: Làm tròn lên số nguyên gần nhất.
+- `round`: Làm tròn giá trị số thực.
+
+### Chuyển Đổi Kiểu Dữ Liệu
+- `to_i`: Chuyển đổi đối tượng thành số nguyên.
+- `to_f`: Chuyển đổi đối tượng thành số thực (float).
+- `to_s`: Chuyển đổi đối tượng thành chuỗi (string).
+- `to_a`: Chuyển đổi thành mảng.
+- `to_h`: Chuyển đổi sang hash.
+
+### Xử Lý Số Liên Quan Đến Khoảng Cách và Vị Trí
+- `between?`: Kiểm tra xem một giá trị có nằm trong một khoảng cho trước hay không.
+
+### Loại Dữ Liệu Null
+- `nil`: Đại diện cho không có giá trị hoặc không tồn tại.
+
+### Vòng Lặp
+- `times`: Lặp một đoạn mã một số lần. 		------------ number.times
+- `upto`: Lặp từ số hiện tại đến số kết thúc.		------------ number.upto(toNumber)
+- `downto`: Lặp từ số hiện tại đến số kết thúc.	------------ number.downto(toNumber)
+- `step`: Lặp với bước nhất định.			------------ number.step(toNumber,space)
+- `while`: Vòng lặp `while`.
+- `until`: Vòng lặp `until`.				------------ until number 
+- `loop`: Lặp đến khi nào gặp điều kiện `break`.
+
+
+### Array (Mảng)
+- `new`: Tạo mảng mới.
+- `at`: Tìm vị trí của giá trị.
+- `fetch(index, ngoại lệ)`: Tìm giá trị tại index nếu không có thì in ra ngoại lệ.
+- `first`, `last`: Lấy giá trị đầu và cuối.
+- `take`: Lấy số phần tử theo giá trị.
+- `drop`: Xóa bỏ số phần tử theo giá trị.
+- `length`: Độ dài.
+- `count`: Số lượng phần tử.
+- `empty?`: Kiểm tra có rỗng hay không (trả về boolean).
+- `include?`: Kiểm tra có chứa phần tử cần tìm hay không (trả về boolean).
+- `push`: Thêm phần tử vào cuối mảng.
+- `unshift`: Thêm phần tử vào đầu mảng.
+- `insert(index, value)`: Thêm value vào vị trí index.
+- `pop`: Xóa phần tử cuối của mảng.
+- `shift`: Xóa phần tử đầu mảng.
+- `delete_at(index)`: Xóa phần tử tại index.
+- `delete(value)`: Xóa tất cả phần tử có giá trị giống.
+- `delete_if` và `keep_if`: Xóa bỏ hoặc giữ lại tùy theo giá trị.
+- `compact`: Loại bỏ các phần tử có giá trị nil.
+- `uniq`: Loại bỏ các phần tử trùng lặp.
+- `each`: Thực hiện vòng lặp qua mảng.
+- `each_with_index(value,index)`: Thực hiện vòng lặp có giá trị index.
+- `reverse_each`: Thực hiện vòng lặp ngược.
+- `map` và `collect`: Tạo một mảng mới chứa kết quả biến đổi.
+- `select` và `reject`: Lấy hoặc bỏ tùy theo giá trị.
+- `bsearch`: Trả về phần tử đầu tiên phù hợp với điều kiện.
+- `clear`: Dọn sạch mảng.
+- `collect(value)`: Kết hợp giá trị của mảng với value.
+- `combination(value)`: Tạo các tổ hợp mảng hoặc danh sách tùy theo value.
+- `permutation` : tạo các hoàn vị -->> [1,2] =>> [12,21]
+
+arr = [1, 2, 3, 4]                          
+combinations = arr.combination(2)
+
+combinations.each do |combo|
+  puts combo.inspect
+end
+
+[1, 2]
+[1, 3]
+[1, 4]
+[2, 3]
+[2, 4]
+[3, 4]
+
+
+- `concat`: Nối mảng.
+- `|` : nối 2 mảng không gây trùng lặp giá trị [1,2,3,4] | [3,4,5] = [1,2,3,4,5]
+- `-` : loại bỏ các phần tử : [1,1,2,3,4,5,6]-[2,3] =[1,4,5,6]
+- `&` : tìm các phần tử chung : [1,2,3,4] & [1,2,4] = [1,2,4]
+- `cycle(value)`: Lặp theo value hoặc vô hạn.
+- `fill`: Thay đổi các giá trị trong mảng.
+- `rindex`: In ra giá trị index của phần tử cuối cùng.
+- `sample`: Lấy ngẫu nhiên các phần tử.
+- `shuffle`: Làm xáo trộn mảng.
+- `slice`: Lấy các phần tử của mảng.
+- `sort`: Sắp xếp phần tử trong mảng.
+- `sort_by`: Sắp xếp phần tử trong mảng.
+- `join`: Nối các phần tử trong mảng.
+- `flatten`: Làm phẳng các phần tử trong mảng.
+- `value_at`: Lấy giá trị tại các index.
+- `<<`: Thêm giá trị vào mảng.
+- `any?` hoặc `all?`, `none`: Có một hoặc tất cả các giá trị phù hợp hoặc không có giá trị nào phù hợp.
+- `find` hoặc `detect`: Tìm phần tử đầu tiên phù hợp với điều kiện.
+- `partition`: Chia mảng thành 2 mảng con phù hợp với điều kiện.
+- `drop` : loại bỏ số phần tử
+- `clone` và `dup` : tạo ra một bản sao 
+
+### String (Chuỗi)
+- `upcase`, `downcase`, và `capitalize`: Chuyển đổi kiểu chữ (hoa, thường, ghi hoa kí tự đầu).
+- `swapcase`: Đổi ngược lại giữa chữ hoa và chữ thường.
+- `split`: Chia chuỗi thành mảng chứa các phần tử.
+- `each` và `each_char`: Vòng lặp trên từng ký tự của chuỗi.
+- `<<`, `+`, và `concat`: Nối chuỗi.
+- `count`: Đếm số lần xuất hiện của ký tự trong chuỗi.
+- `squeeze`: Loại bỏ ký tự lặp lại.
+- `index` và `rindex`: Tìm vị trí đầu tiên và cuối cùng của ký tự.
+- `delete`: Xóa ký tự trong chuỗi.
+- `empty` hoặc `nil`: Kiểm tra có rỗng hay `nil` không.
+- `strip`: Loại bỏ khoảng trống ở đầu và cuối chuỗi.
+- `sub` và `gsub`: Thay thế 1 ký tự và tất cả.
+- `include?`: Kiểm tra có chứa ký tự hay không.
+- `casecmp`: So sánh chuỗi không phân biệt hoa thường.
+- `start_with` và `end_with`: Kiểm tra xem chuỗi bắt đầu và kết thúc bằng các giá trị.
+- `slice`: Trích xuất chuỗi.
+- `insert`: Thêm giá trị vào chuỗi.
+- `reverse`: Đảo ngược chuỗi.
+- `partition`: Chia chuỗi thành các phần phù hợp.
+- `replace`: Thay thế chuỗi bằng đoạn chuỗi mới.
+- `clear`: Làm rỗng chuỗi.
+- `clone` và `dup` : tạo ra một bản sao 
+- `freeze` : đóng băng đối tượng không thế thao tác
+	
+	
+### Hash (key-value)	
+- `each_pair` : lặp qua từng cặp giá trị 
+- `each_key` : lặp qua theo từng khóa
+- `each_value` : lặp qua theo từng giá trị
+- `each` : lặp qua các giá trị key-value
+- `select` : trả về  giá trị phù hợp với điều kiện
+- `reject` : bỏ các phần tử phù hợp với điều kiện
+- `delete` : xóa bỏ key value 
+- `merge` : kết hợp hai hash với nhau
+- Khai báo Hash : {:name :"value",name:"value"} =>>>>> hash[:name],                  cách 2 : {"name"=>"value"} ==>> hash["name"]
+
+### Class
+- đọc thuộc tính : attr_reader
+- ghi đè thuộc tính : attr_writer
+- cả 2 : attr_accessor
+- hàm khởi tạo : initialize
+- khởi tạo sử dụng các optional như : hash,value:,value
+
+### Điều Kiện
+- `if`, `elsif`, `else`, `end`.
+- `case`, `when`, `end`.
+- `unless`, `end`.
+- `||=`: Gán giá trị mới nếu là `nil`.
+
+### Range (Khoảng)
+- `1..5`: Tạo dãy số 1, 2, 3, 4, 5.
+- `1...5`: Tạo dãy số 1, 2, 3, 4.
+
+### Hàm
+- `def method_name(parameter)`: Định nghĩa hàm với tham số.
+- yield : 
+
+def console 
+yield ("boris")
+end
+
+
+console{|name| puts "#{name} is so handsome"} =>>>> boris is so handsome
+- rescue : xử lí ngoại lệ và đảm bảo thực hiện
+
+		def check (a,b)
+			begin
+			a + b 
+			rescue TypeError => e
+				a  = a.to_i
+				b = b.to_i
+				retry
+			ensure
+			puts "Thanh Dat dep trai"
+			end
+		end
+		p check(2,"3")
+
+
+
+
+### biến
+- Biến cục bộ :  khai báo bằng một tên bắt đầu bằng chữ thường hoặc dấu gạch dưới (_). Biến cục bộ có phạm vi chỉ trong phạm vi của khối mà chúng được khai báo
+- Biến toàn cục : khai báo bằng $ và có phạm vi toàn cục  :::: $
+- Biến lớp : được định nghĩa bằng cách sử dụng tiền tố @@ và chúng thuộc về toàn bộ lớp. Tất cả đối tượng của lớp sẽ chia sẻ một bản sao của biến lớp. ::: @@
+- Biến hằng số : được định nghĩa bằng chữ viết hoa và không thay đổi được ::: UPCASE
+- Biến instance : được định nghĩa bằng cách sử dụng tiền tố @ và thuộc về một đối tượng cụ thể ::: @
+
+### proc và lambda	
+example = proc do |number| 
+  puts number
+end
+example1 = lambda |number| do
+  puts number
+end
+
+example.call(12)
+example1.call(13)
+
+- Sư khác nhau lambda và proc là proc không phân biệt số lượng tham số còn lambda thì phân biệt
+
+
+### Quyền truy cập (private, protected, public)
+- public : Có thể truy cập tại bất cứ đâus
+- protected : Có thể truy cập từ trong class và class con
+- private : chỉ có thể truy cập được thông qua phương thức trong class của chính nó
+
+
+
+
+### module : 
+- khai báo các phương thức dùng chung trong module và các class có thể dùng chung các phương thức
+- sử dụng : include, prepend và extend  ::: include có thể bị ghi đè, prepend thì không và extend chỉ sử dụng khi class gọi chứ đối tượng thì không
+- MODULE::MODULE::CLASS : truy cập class trong module của module
+
+### File : 
+file_path = "test2.doc"
+- Đọc file
+
+		File.open(file_path, "r") do |file|
+		   file.each_line do |line|
+		     puts line
+		   end
+		end
+
+-- ghi file 
+
+		File.open(file_path, "w") do |file|
+			5.times do 
+				file.puts "hello" or file.write "hello"
+			end
+		end
+
+-- đổi tên file : rename
+- Kiểm tra sự tồn tại file : exist
+- Xóa file : delete
+- chạy file rb trong file rb : load
+- require_relative  :load file trong cùng thư mục
+
+ 
+### set ::: require("set")	
+- set" thường là một kiểu dữ liệu hoặc cấu trúc dữ liệu dùng để lưu trữ một tập hợp các giá trị duy nhất (không có phần tử trùng lặp).
+- thêm : add
+- Xóa : delete
+
+
+
+/// Date ::: require("date")
+
+
+
+------------NOTE--------------------
+- trong class khi gọi tên class kèm theo phương thức thì khai báo : self.method ->>>>> sử dụng : class.method
+- super =>> kế thừa
+
+# cac cach khai bao class
+					#cach1
+					class MyCar 
+					  attr_accessor :name, :options
+
+					  def initialize(name,options)
+					    @name = name
+					    @options = options
+					  end
+					end
+					
+					#cach 2
+					class MyCar 
+					  attr_accessor :name, :options
+
+					  def initialize(name:,options:"default")
+					    @name = name
+					    @options = options
+					  end
+					end
+					motor = MyCar.new(name:"thanhdat",options:"modify")
+					#cach 3
+					
+					class MyCar 
+					  attr_accessor :name, :options
+
+					  def initialize(hash)
+					    @name = hash[:name]
+					    @options = hash[:options]
+					  end
+					end
+					motor = MyCar.new({name:"thanhdat",options:"adasd"})
+					p motor.methods
+
+
+

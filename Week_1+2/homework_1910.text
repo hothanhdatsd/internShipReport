@@ -1,0 +1,23 @@
+Các kiểu Join trong mysql
+- INNER JOIN : trả về các giá trị khớp ở cả hai bảng
+
+select * from Orders JOIN Customers on Orders.CustomerID = Customers.CustomerID;
+
+- LEFT JOIN : trả về tất cả các giá trị bên trái và các dòng từ bên phải, nếu bên phải không có giá trị thì sẽ là null
+
+select Orders.CustomerID,Customers.CustomerID from Orders LEFT JOIN Customers on Customers.CustomerID = Orders.CustomerID ;
+
+- RIGHT JOIN : trả về tất cả các giá trị bên phải và các dòng từ bên trái, nếu bên trái không có giá trị thì sẽ là null
+
+select Orders.CustomerID,Customers.CustomerID from Orders RIGHT JOIN Customers on Customers.CustomerID = Orders.CustomerID;
+
+
+- SELF JOIN : kết hợp bảng với chính nó để có thể truy xuất thông tin giữa các dòng trong bảng.
+- FULL JOIN : trả về tất cả giá trị ở cả hai bảng 
+
+select Orders.CustomerID,Customers.CustomerID from Orders LEFT JOIN Customers on Customers.CustomerID = Orders.CustomerID UNION
+select Orders.CustomerID,Customers.CustomerID from Orders RIGHT JOIN Customers on Customers.CustomerID = Orders.CustomerID;
+
+- Sub-query là một truy vấn con trong một truy vấn khác
+ví dụ : 
+Select * from orders where price > (select avg(price) from orders) : lấy tất cả thông tin của đơn hàng khi giá lớn hơn giá trung bình.

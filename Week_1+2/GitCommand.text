@@ -1,0 +1,32 @@
+git init : tạo kho lưu trữ 
+git add : thêm các tập tin vào kho chuẩn bị để commit
+git commit : lưu vào kho lưu trữ của git
+- m : thêm tùy chọn nội dung
+git push : đấy các file từ local lên trên repository
+- u : up-stream : tạo nhánh mới nếu chưa có trên repo
+git status : cung cấp thông tin của các tệp tin và thư mục
+git log : hiển thị thông tin commit
+git branch : xem nhánh và tạo nhánh mới
+- m : đổi tên nhánh
+- d : xóa nhánh
+git checkout : di chuyển đến nhánh mới 
+- b : tạo nhánh mới và di chuyển đến nhánh đó	
+git pull : kéo các file mới từ nhánh đó và merge vào nhánh cục bộ trên máy
+git diff : hiển thị sự khác biệt của file đó với phiên bản trước
+git reset : hủy commit 
+git remote add : kết nối tới một repository mới
+git rebase :  chuyển tất cả commit trên nhánh hiện tại và đẩy lên  commit khác	
+git merge : kết hợp các thay đổi của nhánh khác vào nhánh hiện tại
+git fork : tạo ra 1 bản sao của repo để thực hiện các chức năng mà không ảnh hưởng tới repo hiện tại
+git stash : tạo ra một kho lưu trữ tạm thời giúp không cần phải commit khi muốn đổi sang nhánh khác
+git config : thiết lập username và email
+git clone : copy 1 repository về local
+git filter-branch : xóa file đã push trên local
+git push origin --force --all : xóa file đã push trên remote
+sự khác nhau giữa git merge và git rebase
+- merge tạo ra 1 commit có hai parent là nhánh muốn merge và nhánh được merge
+- rebase di chuyển tất cả các commit từ nhánh này và đặt lên trên nhánh mục tiêu không tạo ra thêm commit
+- rebase sẽ làm lịch sử commit thẳng hàng dễ theo dõi hơn 
+- merge sẽ dễ xem được thay đổi của nhánh cần merge
+Git cherry-pick : lấy một commit tại một nhánh và sáp nhập vào nhánh hiện tại..
+

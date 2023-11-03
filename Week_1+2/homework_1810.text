@@ -1,0 +1,7 @@
+
+sự khác nhau giữa git merge và git rebase
+- merge tạo ra 1 commit có hai parent là nhánh muốn merge và nhánh được merge
+- rebase di chuyển tất cả các commit từ nhánh này và đặt lên trên nhánh mục tiêu không tạo ra thêm commit
+- rebase sẽ làm lịch sử commit thẳng hàng dễ theo dõi hơn 
+- merge sẽ dễ xem được thay đổi của nhánh cần merge
+Git cherry-pick : lấy một commit tại một nhánh và sáp nhập vào nhánh hiện tại.
