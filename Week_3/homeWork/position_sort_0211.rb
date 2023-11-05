@@ -11,7 +11,7 @@ def job_position
 end
 
 def check_position(position)
-  return -1 if position.empty? 
+  return -1 if position.empty?
 
   hash_position = position.map do |value|
     sorted(value)
@@ -26,4 +26,3 @@ def sorted(value)
   sum = sorted_positions.map { |value_position| job_position[value_position] }.sum
   { id: value[:id], positions: sorted_positions, sum: sum }
 end
-
