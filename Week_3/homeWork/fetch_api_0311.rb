@@ -4,9 +4,9 @@ require 'faraday'
 
 conn = Faraday.new(url: 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users')
 
-# lay thong tin user
+# # lay thong tin user
 response = conn.get do |req|
-  req.params['id'] = '186'
+  req.params['active'] = 'true'
 end
 
 p response
@@ -16,7 +16,7 @@ p response
 user = {
   'name' => 'Thanh Dat',
   'sex' => 'male',
-  'active' => 'true',
+  'created_at' => DateTime.now.to_s,
   'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
 }
 
@@ -25,10 +25,10 @@ respone = conn.post do |req|
   req.body = user.to_json
 end
 p respone
-user_id = 4
 
-# xoa user
+# # xoa user
 
+user_id = 187
 response = conn.delete "/users/#{user_id}"
 
 if response.status == 200
@@ -36,3 +36,4 @@ if response.status == 200
 else
   puts 'Không thể xóa người dùng.'
 end
+
