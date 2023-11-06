@@ -28,7 +28,7 @@ end
 if response.status == 200
   puts "Người dùng với ID #{user} đã được tao thành công."
 else
-  puts 'Không thể xóa người dùng.'
+  puts 'Không thể tao người dùng.'
 end
 
 # # xoa user
