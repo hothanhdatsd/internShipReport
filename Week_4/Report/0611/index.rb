@@ -59,10 +59,10 @@ class User
 
   def to_json(*_args)
     {
-      name: @name,
-      avatar: @avatar,
-      sex: @sex,
-      created_at: @created_at
+      name:,
+      avatar:,
+      sex:,
+      created_at:
     }.to_json
   end
 
@@ -71,14 +71,15 @@ class User
   end
 end
 
-User.new({
-           'name' => 'Phi Hoan fukboizzzz',
-           'sex' => 'male',
-           'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
-         })
+user = User.new({
+                  'name' => 'Phi Hoan fukboizzzz',
+                  'sex' => 'male',
+                  'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+                })
+user_update = {
+  'name' => 'Phi Hoan fukboiz1',
+  'sex' => 'female',
+  'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+}
 
-# p user.update_user(202, {
-#                      'name' => 'Phi Hoan fukboiz',
-#                      'sex' => 'female',
-#                      'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
-#                    })
+p user.update_user(210, user_update)
