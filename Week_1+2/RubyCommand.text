@@ -219,9 +219,9 @@ example1.call(13)
 
 
 ### Quyền truy cập (private, protected, public)
-- public : Có thể truy cập tại bất cứ đâus
+- public : Có thể truy cập tại bất cứ đâu
 - protected : Có thể truy cập từ trong class và class con
-- private : chỉ có thể truy cập được thông qua phương thức trong class của chính nó
+- private : chỉ có thể truy cập được  trong class của chính nó
 
 
 
