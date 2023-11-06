@@ -17,7 +17,7 @@ class User
       req.headers['Content-Type'] = 'application/json'
       req.body = to_json
     end
-    response.status == 201 || response.status == 200 ? 'created successfully' : 'failed to create user create'
+    response.success? ? 'created successfully' : 'failed to create user create'
   end
 
   def update_user(id, other)
@@ -26,7 +26,7 @@ class User
       req.headers['Content-Type'] = 'application/json'
       req.body = other.to_json
     end
-    response.status == 201 || response.status == 200 ? 'update successfully' : 'failed to update user '
+    response.success? ? 'update successfully' : 'failed to update user '
   end
 
   def delete_user(id)
@@ -34,14 +34,14 @@ class User
       req.url id.to_s
       req.headers['Content-Type'] = 'application/json'
     end
-    response.status == 201 || response.status == 200 ? 'deleted successfully' : 'failed to delete user'
+    response.success? ? 'deleted successfully' : 'failed to delete user'
   end
 
   def get_list_user(condition, value)
     response = url.get do |req|
       check_params(condition, value, req)
     end
-    response.status == 201 || response.status == 200 ? response : 'failed to get list user'
+    response.success? ? response : 'failed to get list user'
   end
 
   private
@@ -58,12 +58,7 @@ class User
   end
 
   def to_json(*_args)
-    {
-      name:,
-      avatar:,
-      sex:,
-      created_at:
-    }.to_json
+  JSON.generate(self)
   end
 
   def url
@@ -77,7 +72,7 @@ user = User.new({
                   'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
                 })
 user_update = {
-  'name' => 'Phi Hoan fukboiz1',
+  'name' => 'Phi Hoan fukboiz12',
   'sex' => 'female',
   'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
 }
