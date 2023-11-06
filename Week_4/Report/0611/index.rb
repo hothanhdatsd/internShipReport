@@ -40,7 +40,6 @@ class User
   def get_list_user(condition, value)
     response = url.get do |req|
       check_params(condition, value, req)
-      req.headers['Content-Type'] = 'application/json'
     end
     response.status == 201 || response.status == 200 ? response : 'failed to get list user'
   end
@@ -59,7 +58,12 @@ class User
   end
 
   def to_json(*_args)
-    JSON.generate(self)
+    {
+      name: @name,
+      avatar: @avatar,
+      sex: @sex,
+      created_at: @created_at
+    }.to_json
   end
 
   def url
@@ -67,15 +71,14 @@ class User
   end
 end
 
-user = User.new({
-                  'name' => 'Thanh Dat updated',
-                  'sex' => 'male',
-                  'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
-                })
+User.new({
+           'name' => 'Phi Hoan fukboizzzz',
+           'sex' => 'male',
+           'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+         })
 
-p user.update_user(202, {
-                     'name' => 'Phi Hoan fukboiz',
-                     'sex' => 'female',
-                     'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
-                   })
-# p user.get_list_user('id', '198')
+# p user.update_user(202, {
+#                      'name' => 'Phi Hoan fukboiz',
+#                      'sex' => 'female',
+#                      'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+#                    })
