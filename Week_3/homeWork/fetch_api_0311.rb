@@ -11,7 +11,7 @@ end
 
 p response
 
-# tao user
+# # tao user
 
 user = {
   'name' => 'Thanh Dat',
@@ -39,3 +39,18 @@ if response.status == 200
 else
   puts 'Không thể xóa người dùng.'
 end
+
+# cap nhat user
+user = {
+  'name' => 'Thanh Dat updated',
+  'sex' => 'male',
+  'created_at' => DateTime.now.to_s,
+  'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+}
+user_id  = 198
+response = conn.put do |req|
+  req.url user_id.to_s
+  req.headers['Content-Type'] = 'application/json'
+  req.body = user.to_json
+end
+p response.status
