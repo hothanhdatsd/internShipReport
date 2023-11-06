@@ -24,7 +24,12 @@ respone = conn.post do |req|
   req.headers['Content-Type'] = 'application/json'
   req.body = user.to_json
 end
-p respone
+
+if response.status == 200
+  puts "Người dùng với ID #{user} đã được tao thành công."
+else
+  puts 'Không thể xóa người dùng.'
+end
 
 # # xoa user
 
