@@ -77,6 +77,7 @@
 - `collect(value)`: Kết hợp giá trị của mảng với value.
 - `combination(value)`: Tạo các tổ hợp mảng hoặc danh sách tùy theo value.
 - `permutation` : tạo các hoàn vị -->> [1,2] =>> [12,21]
+- `inject và reduce` : sum
 
 arr = [1, 2, 3, 4]                          
 combinations = arr.combination(2)
