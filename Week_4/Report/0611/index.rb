@@ -3,6 +3,7 @@
 require 'faraday'
 # class user
 class User
+  API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
   attr_reader :name, :avatar, :sex
 
   def initialize(hash)
@@ -10,12 +11,13 @@ class User
     @avatar = hash['avatar']
     @sex = hash['sex']
     @created_at = DateTime.now.to_s
+    @connect 
   end
 
   def create_user
     response = url.post do |req|
       req.headers['Content-Type'] = 'application/json'
-      req.body = to_json
+      req.body = {name:,avatar:,sex:,created_at:@created_at}.to_json
     end
     response.success? ? 'created successfully' : 'failed to create user create'
   end
@@ -58,11 +60,11 @@ class User
   end
 
   def to_json(*_args)
-  JSON.generate(self)
+    JSON.generate(self)
   end
 
   def url
-    Faraday.new(url: 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users')
+    @connect ||= Faraday.new(url: API_URL)
   end
 end
 
@@ -71,10 +73,11 @@ user = User.new({
                   'sex' => 'male',
                   'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
                 })
-user_update = {
-  'name' => 'Phi Hoan fukboiz12',
-  'sex' => 'female',
-  'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
-}
+# user_update = {
+#   'name' => 'Phi Hoan fukboiz12',
+#   'sex' => 'female',
+#   'avatar' => 'https://duhocvietglobal.com/wp-content/uploads/2018/12/dat-nuoc-va-con-nguoi-anh-quoc.jpg'
+# }
 
-p user.update_user(210, user_update)
+# p user.update_user(210, user_update)
+p user.create_user
