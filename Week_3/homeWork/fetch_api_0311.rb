@@ -25,7 +25,7 @@ respone = conn.post do |req|
   req.body = user.to_json
 end
 
-if response.status == 200
+if response.status == 200 || response.status ==  201
   puts "Người dùng với ID #{user} đã được tao thành công."
 else
   puts 'Không thể tao người dùng.'
