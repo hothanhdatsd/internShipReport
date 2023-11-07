@@ -22,6 +22,7 @@ class User
     @avatar = hash['avatar']
     @sex = hash['sex']
     @created_at = DateTime.now.to_s
+    @connect
   end
 
   def create_user
@@ -64,10 +65,10 @@ class User
   def export_table(data)
     doc = Caracal::Document.new('ApiTable.docx')
     doc.p do
-      text 'API Table'
-    end
+      text 'API Table' 
+    end  
     headers = %w[Name Sex Active Avatar Created_at]
-    table_data = [headers] + data.map { |item| headers.map { |header| item[header.downcase] } }
+    table_data = [headers] +   data.map { |item| headers.map { |header| item[header.downcase] } }
     doc.table table_data, border_size: 4 do
       cell_style rows[0], background: '3366cc', color: 'ffffff', bold: true
       (1..table_data.length - 1).each do |row_index|
@@ -99,7 +100,7 @@ class User
   end
 
   def url
-    @url ||= Faraday.new(url: API_URL)
+    @connect ||= Faraday.new(url: API_URL)
   end
 end
 
@@ -115,4 +116,4 @@ user = User.new({
 # }
 
 # p user.update_user(210, user_update)
-user.get_list_user
+p user.get_list_user

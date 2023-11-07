@@ -1,0 +1,71 @@
+@@ :  Biến class được chia sẻ và truy cập bởi tất cả các thể hiện (instances)
+của lớp và được sử dụng chủ yếu để lưu trữ thông tin mà tất cả các thể hiện của lớp cần chia sẻ.
+
+@ được gọi là biến instance. Mỗi thể hiện (instance) của lớp có một bản sao riêng biệt của các biến
+instance và không được chia sẻ giữa các thể hiện khác.
+
+||= giúp kiểm tra xem biến đã được khởi tạo chưa và nếu chưa, nó sẽ gán giá trị mới cho biến đó
+
+private va protected đều không thể gọi từ bên ngoài lớp nhưng protected có thể được gọi từ lớp con của nó
+
+--------------class variable----------------------
+class Person
+  @@total_count = 0 
+  def initialize(name)
+    @name = name 
+    @@total_count += 1  
+  end
+
+  def self.total_count
+    @@total_count  
+  end
+
+  def introduce
+    "My name is #{@name}"
+  end
+end
+
+# Tạo một số thể hiện của lớp Person
+person1 = Person.new("Alice") 
+person2 = Person.new("Bob")
+person3 = Person.new("Charlie")
+
+puts person1.introduce  # Output: "My name is Alice"
+puts Person.total_count  # Output: 3 (tổng số thể hiện đã được tạo)
+------------------toán tử ||= --------------------
+
+x = nil
+x ||= 10
+puts x #output: 10
+
+------------------------ privavte và protected------------------------------
+class Parent
+  def initialize
+    @value = 42
+  end
+
+  private
+
+  def private_method
+    puts "This is a private method"
+  end
+
+  protected
+
+  def protected_method
+    puts "This is a protected method"
+  end
+end
+
+class Child < Parent
+  def access_protected_method
+    protected_method  # Lớp con có thể gọi phương thức protected từ lớp cha
+  end
+end
+
+parent = Parent.new
+# parent.private_method  # Lỗi: Không thể gọi phương thức private từ bên ngoài lớp
+
+child = Child.new
+child.access_protected_method  # OK: Lớp con gọi phương thức protected từ lớp cha
+
