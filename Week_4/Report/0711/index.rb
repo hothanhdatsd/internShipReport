@@ -15,6 +15,7 @@ require 'caracal'
 require 'caxlsx'
 require 'chunky_png'
 require 'docx'
+require 'gruff'
 # class user
 class User
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
@@ -46,27 +47,44 @@ class User
   private
 
   def exort_chart(gender_counts)
-    doc = Docx::Document.new("ApiTable.docx")
-      Axlsx::Package.new do |p|
-      p.workbook.add_worksheet(name: 'Pie Chart') do |sheet|
-        sheet.add_row %w[Gender Count]
-  
-        sheet.add_row ['male', gender_counts['male']]
-        sheet.add_row ['female', gender_counts['female']]
-  
-        sheet.add_chart(Axlsx::Pie3DChart, start_at: [0, 5], end_at: [10, 20], title: 'Pie Chart') do |chart|
-          chart.add_series data: sheet['B2:B3'], labels: sheet['A2:A3'], colors: %w[FF0000 00FF00]
-        end
+    # Docx::Document.new('ApiTable.docx')
+    # Axlsx::Package.new do |p|
+    #   p.workbook.add_worksheet(name: 'Pie Chart') do |sheet|
+    #     sheet.add_row %w[Gender Count]
+
+    #     sheet.add_row ['male', gender_counts['male']]
+    #     sheet.add_row ['female', gender_counts['female']]
+
+    #     sheet.add_chart(Axlsx::Pie3DChart, start_at: [0, 5], end_at: [10, 20], title: 'Pie Chart') do |chart|
+    #       chart.add_series data: sheet['B2:B3'], labels: sheet['A2:A3'], colors: %w[FF0000 00FF00]
+    #     end
+    #   end
+
+    #   p.serialize('simple.xlsx')
+    # end
+
+    g = Gruff::Pie.new
+    g.title = 'Gender Distribution'
+    g.data('Male', gender_counts['male'])
+    g.data('Female', gender_counts['female'])
+
+    # Save the chart as an image
+    g.write('gender_chart.png')
+
+
+    current_directory = Dir.pwd
+
+    image_filename = 'gender_chart.png'
+
+    image_path = File.join(current_directory, image_filename)
+
+    Caracal::Document.save 'Chart.docx' do |docx|
+      docx.img image_path do
+        width   250
+        height  200
+        align   :left
       end
-  
-      p.serialize('simple.xlsx')
     end
-  
-    # Convert Excel file to PNG image
-    require 'chunky_png'
-  
-    png = ChunkyPNG::Image.from_file('simple.xlsx')
-    png.save('my_file.png')
   end
 
   def check_params(condition, value, req)

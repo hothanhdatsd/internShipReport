@@ -13,3 +13,7 @@ gem 'caxlsx'
 gem 'chunky_png'
 
 gem 'docx'
+
+gem 'gruff'
+
+gem 'rmagick', '4.2.3'

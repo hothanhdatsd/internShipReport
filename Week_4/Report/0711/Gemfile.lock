@@ -21,6 +21,10 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    gruff (0.22.0)
+      histogram
+      rmagick (>= 4.2)
+    histogram (0.2.4.1)
     htmlentities (4.3.4)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
@@ -35,6 +39,7 @@ GEM
     rainbow (3.1.1)
     regexp_parser (2.8.2)
     rexml (3.2.6)
+    rmagick (4.2.3)
     rubocop (1.57.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -63,6 +68,8 @@ DEPENDENCIES
   chunky_png
   docx
   faraday
+  gruff
+  rmagick (= 4.2.3)
   rubocop
 
 BUNDLED WITH
