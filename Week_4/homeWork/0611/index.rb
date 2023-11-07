@@ -47,7 +47,7 @@ class User
 
   def get_list_user(condition = nil, value = nil)
     response = url.get do |req|
-      check_params(condition, value, req) if  condition && value
+      check_params(condition, value, req) if condition && value
     end
     data = JSON.parse(response.body)
     export_table(data)
@@ -57,18 +57,18 @@ class User
 
   private
 
-  def export_table(_data)
+  def export_table(data)
     doc = Caracal::Document.new('ApiTable.docx')
     doc.p do
       text 'API Table'
     end
     headers = %w[Name Sex Active Avatar Created_at]
-    table_data = [headers] + _data.map { |item| headers.map { |header| item[header.downcase] } }
-    column_width = 5000 # Adjust the width as needed
+    table_data = [headers] + data.map { |item| headers.map { |header| item[header.downcase] } }
+    # column_width = 5000
     doc.table table_data, border_size: 4 do
-      headers.each do
-        cell_style cols[headers.index(_1)], width: column_width
-      end
+      # headers.each do
+      #   #cell_style cols[headers.index(_1)]#, width: column_width
+      # end
       cell_style rows[0], background: '3366cc', color: 'ffffff', bold: true
     end
     doc.save
@@ -106,4 +106,4 @@ user = User.new({
 # }
 
 # p user.update_user(210, user_update)
-user.get_list_user()
+user.get_list_user
