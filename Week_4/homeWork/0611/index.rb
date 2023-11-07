@@ -2,9 +2,13 @@
 
 # @@ :  Biến class được chia sẻ và truy cập bởi tất cả các thể hiện (instances)
 # của lớp và được sử dụng chủ yếu để lưu trữ thông tin mà tất cả các thể hiện của lớp cần chia sẻ.
+
 # @ được gọi là biến instance. Mỗi thể hiện (instance) của lớp có một bản sao riêng biệt của các biến
 # instance và không được chia sẻ giữa các thể hiện khác.
+
 # ||= giúp kiểm tra xem biến đã được khởi tạo chưa và nếu chưa, nó sẽ gán giá trị mới cho biến đó
+
+#private va protected đều không thể gọi từ bên ngoài lớp nhưng protected có thể được gọi từ lớp con của nó
 
 require 'faraday'
 require 'caracal'
@@ -64,12 +68,17 @@ class User
     end
     headers = %w[Name Sex Active Avatar Created_at]
     table_data = [headers] + data.map { |item| headers.map { |header| item[header.downcase] } }
-    # column_width = 5000
     doc.table table_data, border_size: 4 do
-      # headers.each do
-      #   #cell_style cols[headers.index(_1)]#, width: column_width
-      # end
       cell_style rows[0], background: '3366cc', color: 'ffffff', bold: true
+      (1..table_data.length - 1).each do |row_index|
+        active_value = table_data[row_index][2]
+
+        if active_value == true
+          cell_style rows[row_index], background: '#1ee9a4'
+        else
+          cell_style rows[row_index], background: '#e91e63'
+        end
+      end
     end
     doc.save
   end
