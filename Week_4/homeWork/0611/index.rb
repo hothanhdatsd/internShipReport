@@ -67,12 +67,12 @@ class User
     doc.p do
       text 'API Table' 
     end  
-    headers = %w[Name Sex Active Avatar Created_at]
+    headers = %w[Id Name Sex Active Avatar Created_at]
     table_data = [headers] +   data.map { |item| headers.map { |header| item[header.downcase] } }
     doc.table table_data, border_size: 4 do
       cell_style rows[0], background: '3366cc', color: 'ffffff', bold: true
       (1..table_data.length - 1).each do |row_index|
-        active_value = table_data[row_index][2]
+        active_value = table_data[row_index][3]
 
         if active_value == true
           cell_style rows[row_index], background: '#1ee9a4'
