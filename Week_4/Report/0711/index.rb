@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-# @@ :  Biến class được chia sẻ và truy cập bởi tất cả các thể hiện (instances)
-# của lớp và được sử dụng chủ yếu để lưu trữ thông tin mà tất cả các thể hiện của lớp cần chia sẻ.
-
-# @ được gọi là biến instance. Mỗi thể hiện (instance) của lớp có một bản sao riêng biệt của các biến
-# instance và không được chia sẻ giữa các thể hiện khác.
-
-# ||= giúp kiểm tra xem biến đã được khởi tạo chưa và nếu chưa, nó sẽ gán giá trị mới cho biến đó
-
-# private va protected đều không thể gọi từ bên ngoài lớp nhưng protected có thể được gọi từ lớp con của nó
-
 require 'faraday'
 require 'caracal'
 require 'caxlsx'
