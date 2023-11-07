@@ -40,7 +40,6 @@ class User
       gender_counts[gender] += 1
     end
     exort_chart(gender_counts)
-
     response.success? ? response : 'failed to get list user'
   end
 
@@ -67,18 +66,13 @@ class User
     g.title = 'Gender Distribution'
     g.data('Male', gender_counts['male'])
     g.data('Female', gender_counts['female'])
-
-    # Save the chart as an image
     g.write('gender_chart.png')
 
-
     current_directory = Dir.pwd
-
     image_filename = 'gender_chart.png'
-
     image_path = File.join(current_directory, image_filename)
 
-    Caracal::Document.save 'Chart.docx' do |docx|
+    Caracal::Document.save 'ApiTable.docx' do |docx|
       docx.img image_path do
         width   250
         height  200
