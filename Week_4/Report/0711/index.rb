@@ -12,10 +12,9 @@
 
 require 'faraday'
 require 'caracal'
-require 'rubyXL'
-require 'caxlsx_rails'
-
-
+require 'caxlsx'
+require 'chunky_png'
+require 'docx'
 # class user
 class User
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
@@ -28,60 +27,46 @@ class User
     @created_at = DateTime.now.to_s
   end
 
-  def create_user
-    response = url.post do |req|
-      req.headers['Content-Type'] = 'application/json'
-      req.body = { name: @name, avatar: @avatar, sex: @sex, created_at: @created_at }.to_json
-    end
-    response.success? ? 'created successfully' : 'failed to create user create'
-  end
-
-  def update_user(id, other)
-    response = url.put do |req|
-      req.url id.to_s
-      req.headers['Content-Type'] = 'application/json'
-      req.body = other.to_json
-    end
-    response.success? ? 'update successfully' : 'failed to update user '
-  end
-
-  def delete_user(id)
-    response = url.delete do |req|
-      req.url id.to_s
-      req.headers['Content-Type'] = 'application/json'
-    end
-    response.success? ? 'deleted successfully' : 'failed to delete user'
-  end
-
   def get_list_user(condition = nil, value = nil)
     response = url.get do |req|
       check_params(condition, value, req) if condition && value
     end
     data = JSON.parse(response.body)
-    export_table(data)
+    gender_counts = Hash.new(0)
+
+    data.each do |item|
+      gender = item['sex']
+      gender_counts[gender] += 1
+    end
+    exort_chart(gender_counts)
 
     response.success? ? response : 'failed to get list user'
   end
 
-  
   private
 
-  def export_table(data)
-    doc = Caracal::Document.new('ApiTable.docx')
-    doc.p do
-      text 'API Table'
-    end
-    headers = %w[Id Name Sex Active Avatar Created_at]
-    table_data = [headers] + data.map { |item| headers.map { |header| item[header.downcase] } }
-    doc.table table_data, border_size: 4 do
-      cell_style rows[0], background: '3366cc', color: 'ffffff', bold: true
-
-      (1..table_data.length - 1).each do |row_index|
-        active_value = table_data[row_index][3]
-        cell_style rows[row_index], background: '#e91e63' if active_value != true
+  def exort_chart(gender_counts)
+    doc = Docx::Document.new("ApiTable.docx")
+      Axlsx::Package.new do |p|
+      p.workbook.add_worksheet(name: 'Pie Chart') do |sheet|
+        sheet.add_row %w[Gender Count]
+  
+        sheet.add_row ['male', gender_counts['male']]
+        sheet.add_row ['female', gender_counts['female']]
+  
+        sheet.add_chart(Axlsx::Pie3DChart, start_at: [0, 5], end_at: [10, 20], title: 'Pie Chart') do |chart|
+          chart.add_series data: sheet['B2:B3'], labels: sheet['A2:A3'], colors: %w[FF0000 00FF00]
+        end
       end
+  
+      p.serialize('simple.xlsx')
     end
-    doc.save
+  
+    # Convert Excel file to PNG image
+    require 'chunky_png'
+  
+    png = ChunkyPNG::Image.from_file('simple.xlsx')
+    png.save('my_file.png')
   end
 
   def check_params(condition, value, req)

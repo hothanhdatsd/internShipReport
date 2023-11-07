@@ -8,4 +8,8 @@ gem 'rubocop'
 
 gem 'caracal'
 
-gem 'roo_on_rails'
+gem 'caxlsx'
+
+gem 'chunky_png'
+
+gem 'docx'
