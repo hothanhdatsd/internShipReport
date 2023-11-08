@@ -16,12 +16,12 @@ class Exporter
 
     g.write('./data/chart.png')
 
-    p current_directory = Dir.pwd 
-    
+    p current_directory = Dir.pwd
+
     image_filename = '/data/chart.png'
     image_path = File.join(current_directory, image_filename)
 
-    Caracal::Document.save  "#{Dir.pwd}/data/TableChart.docx" do |docx|
+    Caracal::Document.save "#{Dir.pwd}/data/TableChart.docx" do |docx|
       docx.img image_path do
         width   250
         height  200
