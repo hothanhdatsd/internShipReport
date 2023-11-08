@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'user'
 require 'gruff'
 
-#export data
+# export data
 class Exporter
   def self.export_chart(gender_counts)
     g = Gruff::Pie.new
@@ -11,11 +13,11 @@ class Exporter
     data.each do |gender, count|
       g.data(gender.capitalize, count)
     end
-    
-    g.write('gender_chart.png')
+
+    g.write('chart.png')
 
     current_directory = Dir.pwd
-    image_filename = 'gender_chart.png'
+    image_filename = 'chart.png'
     image_path = File.join(current_directory, image_filename)
 
     Caracal::Document.save 'TableChart.docx' do |docx|
@@ -27,5 +29,3 @@ class Exporter
     end
   end
 end
-p user = User.new({}).get_list_user('name')
-Exporter.export_chart(user)

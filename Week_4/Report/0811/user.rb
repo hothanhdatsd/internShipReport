@@ -15,7 +15,7 @@ class User
     @created_at = DateTime.now.to_s
   end
 
-  def get_list_user(condition = nil, value = nil)
+  def self.get_list_user(condition = nil, value = nil)
     response = url.get do |req|
       check_params(condition, value, req) if condition && value
     end
@@ -24,14 +24,12 @@ class User
 
     data.each do |item|
       gender = item[condition]
-      gender_counts["#{gender}"] += 1
+      gender_counts[gender.to_s] += 1
     end
     gender_counts
   end
 
-  private
-
-  def check_params(condition, value, req)
+  def self.check_params(condition, value, req)
     case condition
     when 'active'
       req.params['active'] = value
@@ -42,11 +40,13 @@ class User
     end
   end
 
-  def to_json(*_args)
-    JSON.generate(self)
+  def self.url
+    @url ||= Faraday.new(url: API_URL)
   end
 
-  def url
-    @url ||= Faraday.new(url: API_URL)
+  private
+
+  def to_json(*_args)
+    JSON.generate(self)
   end
 end
