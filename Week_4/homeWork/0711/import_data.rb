@@ -28,7 +28,7 @@ class User
   end
   
   def self.import_user 
-    CSV.foreach('users.csv', headers: true) do |row|
+    CSV.foreach('users.csv',headers: true) do |row|
       user_data = {
         name: row['name'],
         avatar: row['avatar'],
@@ -36,7 +36,7 @@ class User
       }
       response = HTTParty.post(API_URL, body: user_data.to_json, headers: { 'Content-Type' => "application/json" })
       if response.success?
-        puts "User #{user_data['name']} imported successfully."
+        puts "User #{user_data[:name]} imported successfully."
       else
         puts "Failed to import user #{user_data['name']}. Error: #{response.code} - #{response.body}"
       end
