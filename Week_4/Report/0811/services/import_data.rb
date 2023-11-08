@@ -5,7 +5,6 @@ require 'csv'
 require 'faraday'
 # import data
 class Importer
-  
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
 
   def self.import_user(file_path)

@@ -5,19 +5,17 @@ require 'gruff'
 
 # export data
 class Exporter
-  
   def self.export_chart(gender_counts)
     g = Gruff::Pie.new
     g.title = 'Gender Distribution'
     data = gender_counts.map { |gender, count| [gender, count] }
-
     data.each do |gender, count|
-      g.data(gender.capitalize, count)
+      g.data(gender.gsub(' ', '').capitalize, count)
     end
 
     g.write('./data/chart.png')
 
-    p current_directory = Dir.pwd
+    current_directory = Dir.pwd
 
     image_filename = '/data/chart.png'
     image_path = File.join(current_directory, image_filename)
