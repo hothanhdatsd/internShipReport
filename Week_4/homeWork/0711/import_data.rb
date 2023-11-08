@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'csv'
-require 'httparty'
 require 'faraday'
 require 'caracal'
 # class user
@@ -26,15 +25,22 @@ class User
     response.success? ? response : 'failed to get list user'
   end
 
-  def self.import_user
+  def import_user
     CSV.foreach('users.csv', headers: true) do |row|
       user_data = {
         name: row['name'],
         avatar: row['avatar'],
         sex: row['sex']
       }
-      response = HTTParty.post(API_URL, body: user_data.to_json, headers: { 'Content-Type' => 'application/json' })
-      response.success? ?  'successfully.' :  'Error.'
+      response = url.post do |req|
+        req.headers['Content-Type'] = 'application/json'
+        req.body = user_data.to_json
+      end
+      if response.status == 201
+        puts 'Successfully.'
+      else
+        puts 'Error.'
+      end
     end
   end
 
@@ -59,5 +65,5 @@ class User
     @url ||= Faraday.new(url: API_URL)
   end
 end
-
-p User.import_user
+user = User.new({})
+p user.import_user
