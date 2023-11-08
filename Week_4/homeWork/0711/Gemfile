@@ -7,4 +7,5 @@ gem 'faraday'
 gem 'rubocop'
 
 gem 'caracal'
+
 gem 'csv'

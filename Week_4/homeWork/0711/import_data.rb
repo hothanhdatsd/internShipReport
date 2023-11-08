@@ -32,15 +32,19 @@ class User
         avatar: row['avatar'],
         sex: row['sex']
       }
-      response = url.post do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.body = user_data.to_json
-      end
-      if response.status == 201
-        puts 'Successfully.'
-      else
-        puts 'Error.'
-      end
+      post_data(user_data)
+    end
+  end
+
+  def post_data(users)
+    response = url.post do |req|
+      req.headers['Content-Type'] = 'application/json'
+      req.body = users.to_json
+    end
+    if response.status == 201
+      puts 'Successfully.'
+    else
+      puts 'Error.'
     end
   end
 
