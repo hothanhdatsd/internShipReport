@@ -1,8 +1,7 @@
-require_relative 'import_data'
-require_relative 'export_data'
-require_relative 'user'
+require './services/import_data'
+require './services/export_data'
+require './services/user'
 
 
-# Importer.import_user('users.csv')
-user = User.get_list_user('name')
-Exporter.export_chart(user)
+Importer.import_user('users.csv')
+Exporter.export_chart(User.get_list_user('name'))
