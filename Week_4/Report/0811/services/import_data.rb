@@ -28,4 +28,3 @@ class Importer
     @url ||= Faraday.new(url: API_URL)
   end
 end
-
