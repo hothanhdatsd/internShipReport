@@ -14,7 +14,7 @@ class ExportDocx
   end
 
   def self.create_table(data)
-    doc = Caracal::Document.new('TableApi.docx')
+    doc = Caracal::Document.new('./data/TableApi.docx')
     doc.p do
       text 'API Table'
     end

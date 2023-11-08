@@ -6,5 +6,5 @@ require './services/user'
 require './services/export_data_to_docx'
 
 # Importer.import_user('users.csv')
-# Exporter.export_chart(User.get_list_user('name'))
-ExportDocx.export_table
+Exporter.export_chart(User.get_list_user('name'))
+# ExportDocx.export_table
