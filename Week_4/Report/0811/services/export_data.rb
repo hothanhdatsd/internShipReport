@@ -5,6 +5,7 @@ require 'gruff'
 
 # export data
 class Exporter
+  
   def self.export_chart(gender_counts)
     g = Gruff::Pie.new
     g.title = 'Gender Distribution'

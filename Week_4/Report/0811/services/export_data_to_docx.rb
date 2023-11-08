@@ -3,6 +3,7 @@
 # export to docx
 class ExportDocx
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
+  
   def self.export_table(condition = nil, value = nil)
     response = url.get do |req|
       check_params(condition, value, req) if condition && value
@@ -10,7 +11,6 @@ class ExportDocx
     data = JSON.parse(response.body)
     create_table(data)
 
-    response.success? ? response : 'failed to get list user'
   end
 
   def self.create_table(data)
