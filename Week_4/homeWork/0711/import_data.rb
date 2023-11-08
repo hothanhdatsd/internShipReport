@@ -34,8 +34,6 @@ class User
         avatar: row['avatar'],
         sex: row['sex'],
       }
-    
-      # Make an HTTP POST request to the API to import the user.
       response = HTTParty.post(API_URL, body: user_data.to_json, headers: { 'Content-Type' => "application/json" })
       if response.success?
         puts "User #{user_data['name']} imported successfully."
