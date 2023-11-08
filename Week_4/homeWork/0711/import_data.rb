@@ -14,7 +14,6 @@ class User
     @avatar = hash['avatar']
     @sex = hash['sex']
     @created_at = DateTime.now.to_s
-    @connect
   end
 
   def get_list_user(condition = nil, value = nil)
@@ -26,24 +25,24 @@ class User
 
     response.success? ? response : 'failed to get list user'
   end
-  
-  def self.import_user 
-    CSV.foreach('users.csv',headers: true) do |row|
+
+  def self.import_user
+    CSV.foreach('users.csv', headers: true) do |row|
       user_data = {
         name: row['name'],
         avatar: row['avatar'],
-        sex: row['sex'],
+        sex: row['sex']
       }
-      response = HTTParty.post(API_URL, body: user_data.to_json, headers: { 'Content-Type' => "application/json" })
+      response = HTTParty.post(API_URL, body: user_data.to_json, headers: { 'Content-Type' => 'application/json' })
       if response.success?
         puts "User #{user_data[:name]} imported successfully."
       else
-        puts "Failed to import user #{user_data['name']}. Error: #{response.code} - #{response.body}"
+        puts "Failed to import user #{user_data[:name]}. Error: #{response.code} - #{response.body}"
       end
     end
   end
-  private
 
+  private
 
   def check_params(condition, value, req)
     case condition
@@ -61,9 +60,8 @@ class User
   end
 
   def url
-    @connect ||= Faraday.new(url: API_URL)
+    @url ||= Faraday.new(url: API_URL)
   end
 end
-
 
 p User.import_user
