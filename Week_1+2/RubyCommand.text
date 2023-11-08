@@ -29,6 +29,7 @@
 - `to_s`: Chuyển đổi đối tượng thành chuỗi (string).
 - `to_a`: Chuyển đổi thành mảng.
 - `to_h`: Chuyển đổi sang hash.
+- `to_sym` : Chuyển đổi thành symbol
 
 ### Xử Lý Số Liên Quan Đến Khoảng Cách và Vị Trí
 - `between?`: Kiểm tra xem một giá trị có nằm trong một khoảng cho trước hay không.
@@ -271,6 +272,8 @@ file_path = "test2.doc"
 ------------NOTE--------------------
 - trong class khi gọi tên class kèm theo phương thức thì khai báo : self.method ->>>>> sử dụng : class.method
 - super =>> kế thừa
+- include dùng để import module còn file thì require
+
 
 # cac cach khai bao class
 					#cach1
