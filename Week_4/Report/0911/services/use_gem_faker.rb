@@ -5,6 +5,7 @@ require 'faraday'
 # class user
 class Fake
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
+  Faker::Config.locale = 'vi'
   attr_reader :name, :avatar, :sex
 
   def initialize(hash)
@@ -35,4 +36,3 @@ class Fake
     JSON.generate(self)
   end
 end
-
