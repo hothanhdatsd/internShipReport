@@ -3,7 +3,7 @@
 require 'faker'
 require 'faraday'
 # class user
-class User
+class Fake
   API_URL = 'https://6418014ee038c43f38c45529.mockapi.io/api/v1/users'
   attr_reader :name, :avatar, :sex
 
@@ -36,4 +36,3 @@ class User
   end
 end
 
-User.post_data
