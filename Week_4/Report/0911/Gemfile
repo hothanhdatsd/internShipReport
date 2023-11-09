@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+
 source 'https://rubygems.org'
 
 gem 'gruff'
@@ -12,3 +13,8 @@ gem 'caracal'
 
 gem 'rubocop'
 
+gem 'google_drive'
+
+gem 'google-apis-drive_v3'
+
+gem 'google-api-client'
