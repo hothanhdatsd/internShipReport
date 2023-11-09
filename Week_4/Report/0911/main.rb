@@ -6,7 +6,7 @@ require './services/user'
 require './services/export_data_to_docx'
 require './services/useGemFaker.rb'
 
-# Importer.import_user('users.csv')
-# Exporter.export_chart(User.get_list_user('active'))
-# ExportDocx.export_table
+Importer.import_user('users.csv')
+Exporter.export_chart(User.get_list_user('active'))
+ExportDocx.export_table
 Fake.post_data
