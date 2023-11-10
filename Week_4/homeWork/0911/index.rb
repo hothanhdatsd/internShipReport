@@ -34,7 +34,7 @@ class FetchHTML
         puts "URL: #{link_data[:href]}"
         puts "Title: #{link_data[:title]}"
         puts "Description: #{link_data[:desc]}"
-        puts '---'
+        puts ''
       end
     else
       puts 'Failed'
