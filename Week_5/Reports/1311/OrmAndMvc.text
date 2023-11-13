@@ -1,0 +1,8 @@
+- ORM là một kỹ thuật lập trình để ánh xạ dữ liệu từ cơ sở dữ liệu quan hệ vào các đối tượng trong ngôn ngữ lập trình hướng đối tượng.
+- MVC là một mô hình kiến trúc phần mềm để tổ chức ứng dụng thành ba phần chính:
+
+ + Model (Mô hình): Đại diện cho dữ liệu và logic liên quan đến dữ liệu. Model xử lý tất cả các thao tác liên quan đến dữ liệu như lấy, lưu, cập nhật, xóa, và thực hiện logic kinh doanh.
+
+ + View (Giao diện): Đại diện cho phần hiển thị của ứng dụng, thường là giao diện người dùng. View là nơi dữ liệu được hiển thị cho người dùng.
+
+ + Controller (Bộ điều khiển): Controller là "trung gian" giữa Model và View. Nó nhận các yêu cầu từ người dùng thông qua View, tương tác với Model để lấy dữ liệu cần thiết và trả về cho View để hiển thị kết quả.
