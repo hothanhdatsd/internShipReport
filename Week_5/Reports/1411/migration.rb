@@ -28,6 +28,9 @@ rails generate migration AddUserRefToProducts user:references : Tạo một user
 rails db:rollback : trở về lại một bước
 rails db:migrate:redo : trở về một bước và thực hiện lại
 rails g migration removeDescriptionFromUsers desc:string : xóa cột desc kiểu string trong bảng users
+rails db:migrate:status : xem trang thai của các migration
+rails db:migrate:down VERSION=***********
+rails db:schema:dump : làm mới lại schema 
 
 create_table :users do |t|
   t.string :name, index: true : Thêm cột name và index
@@ -51,3 +54,8 @@ change_column_null :products, :name, false : Thay đổi không cho cột name t
 change_column_default :products, :approved, from: true, to: false : Thay đổi cột approve default từ true thành false
 remove_reference :products, :users, foreign_key: true : Xóa khóa ngoại ở bảng products
 add_index :products, :part_number : Thêm index cho cột part_number ở bảng products	
+
+require_relative "20231114094833_create"
+revert create 
+- import và chạy 2 migration cùng lúc
+
