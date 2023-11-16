@@ -2,6 +2,18 @@
 - Polymorphic Associations là một loại Active Record Association, giúp tạo liên kết giữa 1 model với nhiều model khác thông qua 1 association duy nhất.
 -----STI--------
 
+class CreateProducts < ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.string :password
+      t.string :type 
+      t.timestamps
+    end
+  end
+end
+
+
 class Product < ApplicationRecord
   message: "only allows letters" }, allow_nil: true,presence: true  
 end
