@@ -16,7 +16,7 @@ end
 
 class Product < ApplicationRecord
  validates :author, format: { with: /\A[a-zA-Z\s]+\z/,
-  message: "only allows letters" }, allow_nil: true,presence: 
+  message: "only allows letters" }, allow_nil: true,presence: true
 end
 
 class Custom < Product
