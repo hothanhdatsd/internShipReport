@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+    <td><%= pluralize(user.comment_count, 'comments') %></td>
+
+  <% end %>
+</div>
+
+<%= link_to "New user", new_user_path %>
+<%= render  'test', variable_name: "hello i'm test" %>
