@@ -1,4 +1,4 @@
-- find : tìm kiếm dựa theo id
+- find : tìm kiếm dựa theo khóa chính
 vd : User.find(20) -> Tìm kiếm user dựa theo id =  20
 
 - find_by : Tìm kiếm dựa theo một điều kiện cụ thể
