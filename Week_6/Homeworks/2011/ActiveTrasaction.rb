@@ -17,7 +17,7 @@ begin
   end
 rescue => e
 ensure
-  # Xử lý ngoại lệ: log, thông báo, hoặc thực hiện các hành động phù hợp nếu ném ra ngoại lệ, tras sẽ tự động rollback
+  # Xử lý ngoại lệ: log, thông báo, hoặc thực hiện các hành động phù hợp nếu ném ra ngoại lệ, tras sẽ tự động rollback và hàm rescue sẽ được thực thi
   
   
   
