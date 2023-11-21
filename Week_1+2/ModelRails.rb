@@ -142,7 +142,7 @@ person.from_json(json)
 person.name # Bob
 
 
----------------------------------------------------------------------------- QUERY-------------------------------------------------------------------------
+------------------------------------------------------------QUERY-------------------------------------------------------------------------
 
 User.group(:age).count : nhóm theo tuổi và đếm
 User.limit(5) : lấy giới hạn 5 giá trị
@@ -152,4 +152,90 @@ User.pluck(:name) : Lấy cột name
 User.sum(:age) : Lấy tổng tuổi
 User.distinct.pluck(:age) : Lấy tên không trùng lặp
 User.where.not(age: 20)
+
+
+---------------------------------------------------------Change_table---------------------------------------------------
+
+add_column :table_name, :column_name, :datatype
+remove_column :table_name, :column_name
+change_column :table_name, :column_name, :new_datatype
+rename_column :table_name, :old_column_name, :new_column_name
+change_column :table_name, :column_name, :text
+add_reference :products, :order, foreign_key: true
+add_reference :users, :role
+add_index :products, :part_number
+change_column_null :products, :name, false
+change_column_default :products, :approved, from: true, to: false
+add_belongs_to :taggings, :taggable, polymorphic: true
+
+--------
+accepts_nested_attributes_for :product
+-- resset 
+User.find_each{|u| User.reset_counters(u.id, :comments)}
+
+----------------------------------------------------------Association-----------------------------------------------
+
+belongs_to : 
+has_many
+has_one
+has_and_belongs_to_many
+has_one :through và has_many :through
+Polymorphic Associations
+
+-----------thêm khóa ngoại----------------------
+change_table :orders do |t|
+ t.references :user
+ t.belongs_to :user
+end
+
+add_column :testts, :user_id, :integer
+add_reference :testts, :user, foreign_key: true
+remove_reference :products, :user, foreign_key: true, index: false
+add_belongs_to :taggings, :taggable, polymorphic: true
+
+-----------------------------------------------------------Validates--------------------------------
+
+validates :name, presence: true
+validates :email, confirmation: true
+validates :email_confirmation, presence: true, if: :email_changed?
+validates :legacy_code, format: { with: /\A[a-zA-Z]+\z/,
+    message: "only allows letters" }
+validates :size, inclusion: { in: %w(small medium large),
+    message: "%{value} is not a valid size" }
+validates :size, exclusion: { in: %w(small medium large),
+    message: "%{value} is not a valid size" }
+validates :name, length: { minimum: 2 }
+validates :bio, length: { maximum: 500 }
+validates :password, length: { in: 6..20 }
+validates :registration_number, length: { is: 6 }
+validates :bio, length: { maximum: 1000,
+    too_long: "%{count} characters is the maximum allowed" }
+validates :points, numericality: true
+validates :games_played, numericality: { only_integer: true }
+validates :name, uniqueness: { scope: :year,
+    message: "should happen once per year" }
+validates :name, uniqueness: { case_sensitive: false }
+validates :age, numericality: true, on: :update
+validates :name, presence: { strict: true }
+
+class Order < ApplicationRecord
+  validates :card_number, presence: true, if: :paid_with_card?
+
+  def paid_with_card?
+    payment_type == "card"
+  end
+end
+
+------------------------------------------------------------------------CallBacks--------------------------------------------------------------
+
+before_validation
+after_validation
+before_save
+around_save
+before_create
+around_create
+after_create
+after_save
+after_commit/after_rollback
+
 
