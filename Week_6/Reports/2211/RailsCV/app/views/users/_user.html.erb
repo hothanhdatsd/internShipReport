@@ -1,0 +1,27 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <strong>Name:</strong>
+    <%= user.name %>
+  </p>
+
+  <p>
+    <strong>Age:</strong>
+    <%= user.age %>
+  </p>
+
+  <p>
+    <strong>Sex:</strong>
+    <%= user.sex %>
+  </p>
+
+  <p>
+    <strong>Created At:</strong>
+    <%= format_date_time(user.created_at) %>
+  </p>
+
+  <p>
+    <strong>Created About:</strong>
+    <%= time_ago_in_words(user.created_at) %>
+  </p>
+
+</div>

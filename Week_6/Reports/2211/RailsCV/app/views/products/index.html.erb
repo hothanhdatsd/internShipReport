@@ -1,0 +1,5 @@
+<h1  style="color: 'red'; font-size: 24px;" > List Products</h1>
+  <h1>Title: <%= @product&.title %></h1>
+  <%= link_to 'edit product', edit_user_product_path(user_id: @product.user_id,id: @product.id) %>
+  <%= button_to "Destroy this product",user_product_path(user_id: @product.user_id,id: @product.id), method: :delete %>
+<br>

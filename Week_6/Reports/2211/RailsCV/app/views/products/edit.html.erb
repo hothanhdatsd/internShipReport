@@ -1,0 +1,6 @@
+<%= form_for [@product.user, @product] do |form| %>
+  <%# Bất kỳ fields nào bạn muốn chỉnh sửa %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.submit "Update Product" %>
+<% end %>
