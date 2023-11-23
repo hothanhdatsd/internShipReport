@@ -1,0 +1,20 @@
+ <!-- Nested Form for f -->
+<div class="nested-fields">
+  <div class="row">
+    <div class="col">
+      <%= f.label :house_number, class: "mt-3" %>
+      <%= f.number_field :house_number, placeholder: "Enter Your Flat/House Number", class: "mb-3 form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.label :area, class: "mt-3" %>
+      <%= f.text_field :area, placeholder: "Enter Your Area Name", class: "mb-3 form-control" %>
+    </div>
+    <div class="col">
+      <%= f.label :city, class: "mt-3" %>
+      <%= f.text_field :city, placeholder: "Enter Your City Name", class: "mb-3 form-control" %>
+    </div>
+  </div>
+  <%= link_to_remove_association "Delete", f, class:"btn btn-danger mb-2" %>
+</div>

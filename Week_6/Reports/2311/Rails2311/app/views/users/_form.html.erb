@@ -1,0 +1,55 @@
+<%= form_with(model: user, class: "my-form", local: true) do |form| %>
+    <% if user.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :age, class: "form-label" %>
+    <%= form.number_field :age, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date, class: "form-label" %>
+    <%= form.date_field :date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :sex, 'Male', class: "form-check-input" %>
+      <%= form.label :sex_male, 'Male', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :sex, 'Female', class: "form-check-input" %>
+      <%= form.label :sex_female, 'Female', class: "form-check-label" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.fields_for :products do |product_form| %>
+        <%= product_form.label :title_product %>
+        <%= product_form.text_field :title %>
+    <% end %>
+
+    <%= form.fields_for :post do |post_form| %>
+        <%= post_form.label :title_post %>
+        <%= post_form.text_field :title %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>

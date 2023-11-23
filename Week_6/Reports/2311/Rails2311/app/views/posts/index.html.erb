@@ -1,0 +1,5 @@
+<h1>Title Post</h1>
+<p><%= @post&.title %></p>
+<%= link_to 'Edit post', edit_user_post_path(user_id: @post&.user_id, id: @post&.id) %>
+<%= button_to 'Destroy this product', url_for(controller: 'posts', action: 'destroy', user_id: @post&.user_id, id: @post&.id), method: :delete %>
+

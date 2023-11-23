@@ -1,0 +1,25 @@
+<div class="set-center flex-column">
+  <div class="card shadow" style="width: 36rem;">
+    <div class="card-header">
+      <h2 class="text-center">Employee Form</h2>
+    </div>
+    <div class="card-body">
+      <!--Error Message-->
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |error| %>
+          <p class="text-danger"><%= error %></p>
+        <% end %>
+      <% end %>
+      <!-- Form Started Here -->
+      <%= form_with model: @employee do |f| %>
+        <%= f.label :name, "Employee Name :", class:"mt-3" %>
+        <%= f.text_field :name ,placeholder: "Enter Employee's Name",class:"mb-2 form-control" %>
+        <br>
+        <!-- Radio Button For Gender -->
+
+        <%= link_to_add_association "add address", f, :addresses, data: {association_insertion_node: '.addresses', association_insertion_method: :append}, class: "btn btn-warning rounded-pill shadow p-3" %>
+        <%= f.submit "Save Employee", class:"btn-primary border-0 rounded-pill shadow p-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
