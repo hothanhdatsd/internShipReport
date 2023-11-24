@@ -8,15 +8,14 @@
       <%= form.label :age, class: "form-label" %>
       <%= form.number_field :age, class: "form-control" %>
     </div>
-  <% unless form.object.persisted? %>
     <div class="products">
       <%= form.fields_for :products do |product| %>
         <%= render 'product_fields', f: product %>
       <% end %>
     </div>
     <%= link_to_add_association "Add Product", form, :products, data: { association_insertion_method: :append, association_insertion_node: '.products' }, class: "btn btn-primary d-block mx-auto mt-3 w-50" %>
-  <% end %>
-  
+
   <%= form.submit "Submit", class: "w-50 btn btn-primary d-block mx-auto mt-3" %>
   <% end %>
 </div>
+

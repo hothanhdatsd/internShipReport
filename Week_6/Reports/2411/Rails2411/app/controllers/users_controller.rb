@@ -54,6 +54,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :age, products_attributes: [:title])
+    params.require(:user).permit(:name, :age, products_attributes: %i[title id _destroy])
   end
 end
