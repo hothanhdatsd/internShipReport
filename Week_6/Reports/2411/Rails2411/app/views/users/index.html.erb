@@ -1,0 +1,18 @@
+<!-- Assuming you're using Bootstrap 4 -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>List Users</h1>
+      <% @users.each do |user| %>
+        <div class="card my-3">
+          <div class="card-body">
+            <h2><%= user.name %></h2>
+            <p>Age: <%= user.age %></p>
+            <%= link_to 'Detail', user, class: 'btn btn-primary mr-2' %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to 'Add user', new_user_path, class: 'btn btn-success mt-3' %>
+    </div>
+  </div>
+</div>
