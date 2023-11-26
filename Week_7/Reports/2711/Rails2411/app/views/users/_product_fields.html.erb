@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <%= f.label :title, class: "form-label" %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.hidden_field :id %>
+  <%= link_to_remove_association "Delete", f,   { wrapper_class: 'wrapper' } %>
+</div>
