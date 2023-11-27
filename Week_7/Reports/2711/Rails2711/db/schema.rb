@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_231_124_085_203) do
+ActiveRecord::Schema[7.1].define(version: 20_231_127_022_539) do
   create_table 'action_text_rich_texts', charset: 'utf8mb4', collation: 'utf8mb4_0900_ai_ci', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body', size: :long
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 20_231_124_085_203) do
     t.string 'age'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'test'
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'

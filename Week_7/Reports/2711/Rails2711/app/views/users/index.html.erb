@@ -1,4 +1,12 @@
-<!-- Assuming you're using Bootstrap 4 -->
+<%= form_tag users_path, method: :get, class: "form-inline" do |f| %>
+  <%= text_field_tag 'user_list[test]', params[:user_list].try(:[], :test),
+      class: "form-control mr-sm-2",
+      placeholder: t("search.test") %>
+  <%= button_tag :submit, class: "btn btn-outline-primary my-2 my-sm-0", type: "submit" do %>
+    <span class="icon-search-left"></span>
+  <% end %>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -16,3 +24,4 @@
     </div>
   </div>
 </div>
+<%== pagy_nav(@pagy) %>

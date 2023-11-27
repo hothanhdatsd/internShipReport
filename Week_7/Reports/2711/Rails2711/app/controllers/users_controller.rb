@@ -2,8 +2,13 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  include Pagy::Backend
   def index
-    @users = User.all
+    # search_params = params[:user_list]&.fetch(:test, nil)
+    # @pagy, @users = pagy(User.all, items: 1)
+    # @users = User.search_with_name(search_params)
+    search_params = params[:user_list]&.fetch(:test, nil)
+    @pagy, @users = pagy(User.search_with_name(search_params), items: 1)
   end
 
   def show
