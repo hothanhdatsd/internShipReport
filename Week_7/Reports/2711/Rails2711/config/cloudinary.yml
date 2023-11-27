@@ -1,0 +1,13 @@
+development:
+  cloud_name: ENV['cloud_name']
+  api_key: ENV['api_key']
+  api_secret: ENV['api_secret']
+  secure: true
+  enhance_image_tag: true
+
+production:
+  cloud_name: ENV['cloud_name']
+  api_key: ENV['api_key']
+  api_secret: ENV['api_secret']
+  secure: true
+  static_file_support: false

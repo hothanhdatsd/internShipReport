@@ -89,4 +89,5 @@ Rails.application.configure do
     password: ENV['PASSWORD'],
     authentication: 'plain'
   }
+  config.active_storage.service = :cloudinary
 end

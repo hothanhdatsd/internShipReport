@@ -97,6 +97,10 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
+  config.action_controller.raise_on_missing_callback_actions = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = { from: '<hothanhdatsd@gmail.com>' }
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
@@ -104,8 +108,8 @@ Rails.application.configure do
     enable_starttls_auto: true,
     address: 'smtp.gmail.com',
     port: 587, domain: 'smtp.gmail.com',
-    user_name: 'hothanhdatsd@gmail.com', # Tên tài khoản gmail mà các bạn tạo mật khẩu ứng dụng
-    password: 'jtjvpbworuftfgjx',  # Mật khẩu ứng dụng
+    user_name: ENV['USER_NAME'],
+    password: ENV['PASSWORD'],
     authentication: 'plain'
   }
 end
