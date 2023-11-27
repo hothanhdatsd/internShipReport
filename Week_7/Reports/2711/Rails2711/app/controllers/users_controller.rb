@@ -4,11 +4,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   include Pagy::Backend
   def index
-    # search_params = params[:user_list]&.fetch(:test, nil)
-    # @pagy, @users = pagy(User.all, items: 1)
-    # @users = User.search_with_name(search_params)
-    search_params = params[:user_list]&.fetch(:test, nil)
-    @pagy, @users = pagy(User.search_with_name(search_params), items: 1)
+    if params[:q].present?
+      q_param = params.require(:q).permit(:test_cont, :rich_text_name_cont)
+      @q = User.ransack(q_param)
+      @pagy, @users = pagy(@q.result(distinct: true), items: 5)
+    else
+      @q = User.ransack(q_param)
+      @pagy, @users = pagy(User.all, items: 5)
+    end
   end
 
   def show
@@ -33,9 +36,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path }
+        UserMailer.welcome_email(@user).deliver_now
+        format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render action: 'new' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,6 +65,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :age, products_attributes: %i[title id _destroy])
+    params.require(:user).permit(:name, :age, :email, products_attributes: %i[title id _destroy])
   end
 end
