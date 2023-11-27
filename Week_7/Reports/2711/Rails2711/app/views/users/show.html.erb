@@ -10,6 +10,10 @@
     Age:
     <%= @user.age %>
   </p> 
+  <% if @user.picture.attached? %>
+    <%= image_tag url_for(@user.picture), width: 200, class: "d-flex justify-content-center" %>
+  <% end %> 
+
   <div class="text-center mb-4">
     <%= link_to 'Edit user', edit_user_path %>
   </div>

@@ -12,6 +12,10 @@
       <%= form.label :email, class: "form-label" %>
       <%= form.email_field :email, class: "form-control" %>
     </div>
+    <div class="mb-3">
+      <%= form.label :picture %>
+      <%= form.file_field :picture %>
+    </div>
     <div class="products">
       <%= form.fields_for :products do |product| %>
         <%= render 'product_fields', f: product %>

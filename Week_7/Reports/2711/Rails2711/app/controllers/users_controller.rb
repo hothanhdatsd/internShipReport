@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   include Pagy::Backend
   def index
     if params[:q].present?
-      q_param = params.require(:q).permit(:test_cont, :rich_text_name_cont)
+      q_param = params.require(:q).permit(:age_cont, :name_cont, :s, :updated_at_gt, :updated_at_lt)
       @q = User.ransack(q_param)
       @pagy, @users = pagy(@q.result(distinct: true), items: 5)
     else
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        UserMailer.welcome_email(@user).deliver_now
+        # UserMailer.welcome_email(@user).deliver_now
         format.html { redirect_to(@user, notice: 'User was successfully created.') }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -65,6 +65,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :age, :email, products_attributes: %i[title id _destroy])
+    params.require(:user).permit(:name, :age, :email, :picture, :action, :commit, products_attributes: %i[title id _destroy ])
   end
 end
