@@ -4,3 +4,6 @@ import "bootstrap";
 
 import "trix"
 import "@rails/actiontext"
+
+import * as bootstrap from "bootstrap"
+window.bootstrap = bootstrap;

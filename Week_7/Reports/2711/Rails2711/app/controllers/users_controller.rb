@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   include Pagy::Backend
   def index
     if params[:q].present?
-      q_param = params.require(:q).permit(:age_cont, :name_cont, :s, :updated_at_gt, :updated_at_lt)
+      q_param = params.require(:q).permit(:id_cont, :age_cont, :email_cont, :created_at_cont, :updated_at_cont, :s, :updated_at_gt, :updated_at_lt, :name_cont, :age_or_email_cont)
       @q = User.ransack(q_param)
-      @pagy, @users = pagy(@q.result(distinct: true), items: 5)
+      @pagy, @users = pagy(@q.result(distinct: true), items: 10)
     else
-      @q = User.ransack(q_param)
-      @pagy, @users = pagy(User.all, items: 5)
+      @q = User.ransack # Or adjust this line as needed based on your search requirements
+      @pagy, @users = pagy(@q.result(distinct: true), items: 10)
     end
   end
 
@@ -20,6 +20,14 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def delete_modal
+    @user = User.find(params[:id])
   end
 
   def update

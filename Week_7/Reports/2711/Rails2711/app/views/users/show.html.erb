@@ -15,7 +15,7 @@
   <%# end %> 
 
   <% if @user.picture.attached? %>
-      <%= cl_image_tag @user.picture.key, :width=>150, :crop=>"fill" %>
+      <%= cl_image_tag @user.picture.key, :width=> 800, :crop=>"fill", class: "d-flex mx-auto" %>
   <% end %>
 
   <div class="text-center mb-4">
