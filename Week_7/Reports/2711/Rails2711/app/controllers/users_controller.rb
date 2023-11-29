@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   include Pagy::Backend
   def index
     if params[:q].present?
-      q_param = params.require(:q).permit(:id_cont, :age_cont, :email_cont, :created_at_cont, :updated_at_cont, :s, :updated_at_gt, :updated_at_lt, :name_cont, :age_or_email_cont)
+      q_param = params.require(:q).permit(:id_cont, :age_cont, :email_cont, :created_at_cont, :updated_at_cont, :s,
+                                          :updated_at_gt, :updated_at_lt, :name_cont, :age_or_email_cont)
       @q = User.ransack(q_param)
-      @pagy, @users = pagy(@q.result(distinct: true), items: 10)
     else
       @q = User.ransack # Or adjust this line as needed based on your search requirements
-      @pagy, @users = pagy(@q.result(distinct: true), items: 10)
     end
+    @pagy, @users = pagy(@q.result(distinct: true), items: 10)
   end
 
   def show
@@ -26,16 +26,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete_modal
-    @user = User.find(params[:id])
-  end
-
   def update
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path }
       else
-        format.htmll { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
@@ -45,22 +41,19 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # UserMailer.welcome_email(@user).deliver_now
-        format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        format.html { redirect_to(@user, notice: 'User was successfully created.', status: :created) }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new' , status: :unprocessable_entity}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
+    @user.destroy
     respond_to do |format|
-      if @user.destroy
         format.html { redirect_to users_path }
-      else
-        format.html { render :index }
-      end
     end
   end
 
@@ -73,6 +66,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :age, :email, :picture, :action, :commit, products_attributes: %i[title id _destroy ])
+    params.require(:user).permit(:name, :age, :email, :picture, :action, :commit,
+                                  products_attributes: %i[title id _destroy])
   end
 end

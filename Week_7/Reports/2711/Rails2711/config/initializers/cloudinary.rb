@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Cloudinary.config do |config|
   config.cloud_name = ENV['cloud_name']
   config.api_key = ENV['api_key']
@@ -5,4 +7,3 @@ Cloudinary.config do |config|
   config.secure = true # Ensures HTTPS
   config.cdn_subdomain = true # Optional, use CDN subdomain for assets
 end
-  
