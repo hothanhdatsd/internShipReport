@@ -9,6 +9,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-20.times do |i|
+20.times do |_i|
   User.create(name: Faker::Name.name, age: Faker::Number.number(digits: 2), test: 'dasa', email: Faker::Internet.email)
 end

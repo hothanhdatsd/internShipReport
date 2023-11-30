@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:age) }
     it { should validate_presence_of(:email) }
@@ -10,6 +12,6 @@ RSpec.describe User, type: :model do
     it { should have_one_attached(:picture) }
     it { should have_many(:products) }
   end
-  describe "" do
+  describe '' do
   end
 end

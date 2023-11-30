@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Products", type: :request do
-  it "returns a successful response" do
+RSpec.describe 'Products', type: :request do
+  it 'returns a successful response' do
     get '/users'
     expect(response).to have_http_status(200)
   end

@@ -38,14 +38,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format| 
+    respond_to do |format|
       if @user.save
 
         # UserMailer.welcome_email(@user).deliver_now
-        format.html { redirect_to(@user, notice: 'User was successfully created.', flash: { status: :created })}
+        format.html { redirect_to(@user, notice: 'User was successfully created.', flash: { status: :created }) }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: 'new' , status: :unprocessable_entity}
+        format.html { render action: 'new', status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -54,11 +54,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-        format.html { redirect_to users_path }
+      format.html { redirect_to users_path }
     end
   end
-  def edit
-  end
+
+  def edit; end
 
   private
 
@@ -68,6 +68,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :age, :email, :picture, :action, :commit,
-                                  products_attributes: %i[title id _destroy])
+                                 products_attributes: %i[title id _destroy])
   end
 end

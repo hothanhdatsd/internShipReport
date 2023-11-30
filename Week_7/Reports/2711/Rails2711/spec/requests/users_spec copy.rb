@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rails_helper'
 
 # RSpec.describe UsersController, type: :controller do
@@ -38,8 +39,8 @@
 #       expect(response).to have_http_status(:unprocessable_entity)
 #     end
 #   end
-  
-#   describe "GET #new user" do 
+
+#   describe "GET #new user" do
 #     it "create a new user" do
 #       user = create(:user)
 #       get '/users/new'
@@ -48,14 +49,14 @@
 #   end
 
 #   describe 'POST #destroy' do
-#     it "destroy a user" do 
+#     it "destroy a user" do
 #       user = create(:user)
 #       delete "/users/#{user.id}"
 #       expect(response).to redirect_to(users_path)
 #     end
 #   end
 
-#   describe "PUT #update user" do 
+#   describe "PUT #update user" do
 #     it "updates a user" do
 #       user = create(:user)
 #       put "/users/#{user.id}", params: { user: { name: user.name, email: user.email, age: user.age } }
