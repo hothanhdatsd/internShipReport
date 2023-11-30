@@ -6,6 +6,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'sends a welcome email to the user' do
       email = UserMailer.welcome_email(user).deliver_now
+      p email
       expect(email.subject).to eq('Welcome to My Awesome Site')
     end
   end

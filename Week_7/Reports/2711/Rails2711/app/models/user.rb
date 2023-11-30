@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_one :name, class_name: 'ActionText::RichText', as: :record
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name age email updated_at created_at]
+    %w[id name age email updated_at created_at name_body]
   end
 
   def self.ransackable_associations(_auth_object = nil)

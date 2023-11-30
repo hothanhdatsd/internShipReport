@@ -22,7 +22,7 @@
     <%= link_to 'Edit user', edit_user_path %>
   </div>
   <div class="text-center mb-4">
-      <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger mt-3", data: { confirm: "Are you sure?" } %>
+      <%= button_to "Destroy this user", user_path(id: @user.id), method: :delete, class: "btn btn-danger mt-3", data: { confirm: "Are you sure?" } %>
   </div>
   <% unless @user.products.blank? %>
     <h2 class="text-center mb-4">List products</h2>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     if params[:q].present?
       q_param = params.require(:q).permit(:id_cont, :age_cont, :email_cont, :created_at_cont, :updated_at_cont, :s,
-                                          :updated_at_gt, :updated_at_lt, :name_cont, :age_or_email_cont)
+                                          :updated_at_gt, :updated_at_lt, :name_body_cont, :age_or_email_cont)
       @q = User.ransack(q_param)
     else
       @q = User.ransack # Or adjust this line as needed based on your search requirements
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_path }
+        format.html { redirect_to user_path(@user.id) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -38,10 +38,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |format|
+    respond_to do |format| 
       if @user.save
+
         # UserMailer.welcome_email(@user).deliver_now
-        format.html { redirect_to(@user, notice: 'User was successfully created.', status: :created) }
+        format.html { redirect_to(@user, notice: 'User was successfully created.', flash: { status: :created })}
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: 'new' , status: :unprocessable_entity}
@@ -56,8 +57,8 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path }
     end
   end
-
-  def edit; end
+  def edit
+  end
 
   private
 

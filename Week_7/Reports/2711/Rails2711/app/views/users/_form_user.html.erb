@@ -1,33 +1,39 @@
-<%= turbo_frame_tag "modal" do %>
 <div class="container">
   <%= form_with(model: user, class: "w-50 mx-auto") do |form| %>
-    <div class="mb-3">
+
+    <div class="mb-5 ">
       <%= form.label :name, class: "form-label" %>
       <%= form.rich_text_area :name %>
     </div>
-    <div class="mb-3">
+
+    <div class="mb-5">
       <%= form.label :age, class: "form-label" %>
       <%= form.number_field :age, class: "form-control" %>
     </div>
-    <div class="mb-3">
+
+    <div class="mb-5">
       <%= form.label :email, class: "form-label" %>
       <%= form.email_field :email, class: "form-control" %>
     </div>
-    <div class="mb-3">
+
+    <div class="mb-5">
       <%= form.label :picture %>
       <%= form.file_field :picture %>
     </div>
+
+    <% if @user.picture.attached? %>
+        <%= cl_image_tag @user.picture.key, :width=> 800, :crop=>"fill", class: "d-flex mx-auto" %>
+    <% end %>
+
     <div class="products">
       <%= form.fields_for :products do |product| %>
-        <%= render 'product_fields', f: product %>
+        <%= render 'product_fields', f: product, test: '132' %>
       <% end %>
     </div>
     <%= link_to_add_association "Add Product", form, :products, data: { association_insertion_method: :append, association_insertion_node: '.products' }, class: "btn btn-primary d-block mx-auto mt-3 w-50" %>
-
-  <%= form.submit "Submit", class: "w-50 btn btn-primary d-block mx-auto mt-3" %>
+    <%= form.submit "Submit", class: "w-50 btn btn-primary d-block mx-auto mt-3" %>
   <% end %>
 </div>
-<% end %>
 
 
 
